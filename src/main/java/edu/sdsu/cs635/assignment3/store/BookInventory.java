@@ -1,13 +1,14 @@
 package edu.sdsu.cs635.assignment3.store;
 
 import edu.sdsu.cs635.assignment3.entity.Book;
+import edu.sdsu.cs635.assignment3.memento.InventoryMemento;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
 public class BookInventory implements Inventory<Book, Integer> {
-  private final Map<Integer, Book> bookStore;
+  private Map<Integer, Book> bookStore;
 
   public BookInventory() {
     this.bookStore = new HashMap<>();
@@ -58,5 +59,13 @@ public class BookInventory implements Inventory<Book, Integer> {
        .stream()
        .filter(book -> book.getName().equals(name))
        .findFirst();
+  }
+
+  public InventoryMemento createMemento() {
+    return new InventoryMemento(bookStore);
+  }
+
+  public void restore(InventoryMemento inventoryMemento) {
+    this.bookStore = inventoryMemento.getInventory();
   }
 }
