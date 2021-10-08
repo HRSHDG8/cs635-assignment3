@@ -1,5 +1,6 @@
 package edu.sdsu.cs635.assignment3.entity;
 
+import edu.sdsu.cs635.assignment3.memento.BookMemento;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,4 +18,19 @@ public class Book implements Serializable {
   private String name;
   private Float price;
   private Integer quantity;
+
+  public BookMemento createMemento() {
+    return new BookMemento(id, name, price, quantity);
+  }
+
+  public void restore(BookMemento bookMemento) {
+    if (bookMemento != null) {
+      this.id = bookMemento.getId();
+      this.name = bookMemento.getName();
+      this.quantity = bookMemento.getQuantity();
+      this.price = bookMemento.getPrice();
+    } else {
+      throw new IllegalArgumentException("memento cannot be null");
+    }
+  }
 }

@@ -19,10 +19,13 @@ public class BookInventory implements Inventory<Book, Integer> {
       Book inventoryBook = bookStore.get(book.getId());
       inventoryBook.setQuantity(inventoryBook.getQuantity() + 1);
     } else {
+      if (book.getQuantity() <= 0) {
+        book.setQuantity(1);
+      }
       book.setId(computeIndex());
     }
-    Book inventoryBook = bookStore.put(book.getId(), book);
-    return inventoryBook != null;
+    bookStore.put(book.getId(), book);
+    return bookStore.containsKey(book.getId());
   }
 
   private int computeIndex() {
