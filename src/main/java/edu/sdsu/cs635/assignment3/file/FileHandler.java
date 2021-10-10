@@ -20,7 +20,7 @@ public class FileHandler {
   }
 
   public void addToFile(Command command) {
-    try (InputStream commandLog = this.getClass().getClassLoader().getResourceAsStream("Command.log");
+    try (InputStream commandLog = this.getClass().getClassLoader().getResourceAsStream("command.json");
          InputStreamReader commandReader = new InputStreamReader(commandLog);
          BufferedReader commandBuffer = new BufferedReader(commandReader)) {
       StringBuilder line = new StringBuilder();
@@ -44,7 +44,7 @@ public class FileHandler {
 
   private void writeToFile(List<Object> commands) throws JsonProcessingException {
     String valueAsString = objectMapper.writeValueAsString(commands);
-    Path source = Paths.get(this.getClass().getClassLoader().getResource("Command.log").getPath().replaceFirst("/", ""));
+    Path source = Paths.get(this.getClass().getClassLoader().getResource("command.json").getPath().replaceFirst("/", ""));
     try (FileWriter fileWriter = new FileWriter(source.toFile())) {
       System.out.println("Huuahhh + " + valueAsString);
       fileWriter.write(valueAsString);
