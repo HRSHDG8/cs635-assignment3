@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BookInventoryTest {
 
-  private BookInventory bookInventory;
+  private Inventory<Integer, Book> bookInventory;
 
   @BeforeEach
   void setUp() {
@@ -29,7 +29,7 @@ class BookInventoryTest {
     bookInventory.add(harryPotter);
     bookInventory.add(harryPotter);
     Book lordOfTheRings = new Book(null, "Lord of the rings", 49.99f, 0);
-    assertTrue(bookInventory.add(lordOfTheRings));
+    bookInventory.add(lordOfTheRings);
     assertTrue(bookInventory.sell(lordOfTheRings.getId()));
     assertFalse(bookInventory.sell(lordOfTheRings.getId()));
     assertFalse(bookInventory.sell(10));

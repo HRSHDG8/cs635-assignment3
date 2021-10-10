@@ -1,5 +1,9 @@
 package edu.sdsu.cs635.assignment3.store;
 
+import edu.sdsu.cs635.assignment3.command.AddBook;
+import edu.sdsu.cs635.assignment3.command.Command;
+import edu.sdsu.cs635.assignment3.command.SellBook;
+import edu.sdsu.cs635.assignment3.decorator.SaveToFileDecorator;
 import edu.sdsu.cs635.assignment3.entity.Book;
 import edu.sdsu.cs635.assignment3.memento.InventoryMemento;
 
@@ -7,45 +11,32 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class BookInventory implements Inventory<Book, Integer> {
+public class BookInventory implements Inventory<Integer, Book> {
   private Map<Integer, Book> bookStore;
 
   public BookInventory() {
     this.bookStore = new HashMap<>();
   }
 
-  @Override
-  public boolean add(Book book) {
-    if (bookStore.containsKey(book.getId())) {
-      Book inventoryBook = bookStore.get(book.getId());
-      inventoryBook.setQuantity(inventoryBook.getQuantity() + 1);
-    } else {
-      if (book.getQuantity() <= 0) {
-        book.setQuantity(1);
-      }
-      book.setId(computeIndex());
-    }
-    bookStore.put(book.getId(), book);
-    return bookStore.containsKey(book.getId());
+  public Map<Integer, Book> getBookStore() {
+    return bookStore;
   }
 
-  private int computeIndex() {
-    return bookStore.keySet().stream().max(Integer::compareTo).orElse(0) + 1;
+  @Override
+  public void add(Book book) {
+    Command addBook = new SaveToFileDecorator(new AddBook(this, book));
+    addBook.execute();
   }
 
   @Override
   public boolean sell(Integer id) {
-    if (bookStore.containsKey(id)) {
-      Book book = bookStore.get(id);
-      if (book.getQuantity() <= 0) {
-        return false;
-      } else {
-        book.setQuantity(book.getQuantity() - 1);
-        bookStore.put(book.getId(), book);
-        return true;
-      }
+    try {
+      Command sellCommand = new SaveToFileDecorator(new SellBook(this, id));
+      sellCommand.execute();
+      return true;
+    } catch (RuntimeException r) {
+      return false;
     }
-    return false;
   }
 
   @Override
@@ -61,10 +52,12 @@ public class BookInventory implements Inventory<Book, Integer> {
        .findFirst();
   }
 
+  @Override
   public InventoryMemento createMemento() {
     return new InventoryMemento(bookStore);
   }
 
+  @Override
   public void restore(InventoryMemento inventoryMemento) {
     this.bookStore = inventoryMemento.getInventory();
   }
