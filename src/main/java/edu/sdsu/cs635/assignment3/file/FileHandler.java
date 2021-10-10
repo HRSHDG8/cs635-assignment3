@@ -9,7 +9,7 @@ import edu.sdsu.cs635.assignment3.command.Command;
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 public class FileHandler {
@@ -29,7 +29,7 @@ public class FileHandler {
         line.append(temp);
       }
       if (line.toString().isEmpty()) {
-        writeToFile(Collections.singletonList(command));
+        writeToFile(Arrays.asList(command));
       } else {
         List<Object> commands = objectMapper.readValue(line.toString(), new TypeReference<List<Object>>() {
         });

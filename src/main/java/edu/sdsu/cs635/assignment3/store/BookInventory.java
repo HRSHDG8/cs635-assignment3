@@ -5,6 +5,7 @@ import edu.sdsu.cs635.assignment3.command.Command;
 import edu.sdsu.cs635.assignment3.command.SellBook;
 import edu.sdsu.cs635.assignment3.decorator.SaveToFileDecorator;
 import edu.sdsu.cs635.assignment3.entity.Book;
+import edu.sdsu.cs635.assignment3.file.MementoFileHandler;
 import edu.sdsu.cs635.assignment3.memento.InventoryMemento;
 
 import java.util.HashMap;
@@ -54,6 +55,7 @@ public class BookInventory implements Inventory<Integer, Book> {
 
   @Override
   public InventoryMemento createMemento() {
+    new MementoFileHandler().addToFile(this);
     return new InventoryMemento(bookStore);
   }
 
