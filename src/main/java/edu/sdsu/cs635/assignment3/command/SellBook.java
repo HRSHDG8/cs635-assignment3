@@ -1,12 +1,21 @@
 package edu.sdsu.cs635.assignment3.command;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import edu.sdsu.cs635.assignment3.entity.Book;
+import edu.sdsu.cs635.assignment3.serialization.SellBookSerializer;
 import edu.sdsu.cs635.assignment3.store.Inventory;
 
 import java.util.Map;
 
+@JsonSerialize(using = SellBookSerializer.class)
 public class SellBook implements Command {
+  private static final long serialVersionUID = -4778810560316362985L;
   private final Inventory<Integer, Book> bookInventory;
+
+  public Integer getId() {
+    return id;
+  }
+
   private final Integer id;
 
   public SellBook(Inventory<Integer, Book> bookInventory, Integer id) {

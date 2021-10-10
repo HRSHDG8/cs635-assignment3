@@ -1,12 +1,18 @@
 package edu.sdsu.cs635.assignment3.command;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.deser.AbstractDeserializer;
 import edu.sdsu.cs635.assignment3.entity.Book;
+import edu.sdsu.cs635.assignment3.serialization.AddBookSerializer;
 import edu.sdsu.cs635.assignment3.store.Inventory;
 
 import java.util.Map;
 
+@JsonSerialize(using = AddBookSerializer.class)
+@JsonDeserialize(using = AbstractDeserializer.class)
 public class AddBook implements Command {
-
+  private static final long serialVersionUID = -4778810560316362984L;
   private final Inventory<Integer, Book> bookInventory;
   private final Book book;
 
@@ -34,5 +40,9 @@ public class AddBook implements Command {
   private int computeIndex() {
     Map<Integer, Book> bookStore = bookInventory.getBookStore();
     return bookStore.keySet().stream().max(Integer::compareTo).orElse(0) + 1;
+  }
+
+  public Book getBook() {
+    return book;
   }
 }
