@@ -7,7 +7,10 @@ import edu.sdsu.cs635.assignment3.store.Inventory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MainTest {
   private Inventory<Integer, Book> bookInventory;
@@ -24,8 +27,12 @@ public class MainTest {
     bookInventory.add(book);
     InventoryMemento inventoryMemento = bookInventory.createMemento();
     Book lordOfTheRings = new Book(null, "Lord of the rings", 299.99f, 0);
+    Map<Integer, Book> map = inventoryMemento.getInventory();
+    assertFalse(map.containsKey(lordOfTheRings.getId()));
     bookInventory.add(lordOfTheRings);
+    inventoryMemento = bookInventory.createMemento();
+    bookInventory.sell(lordOfTheRings.getId());
     bookInventory.restore(inventoryMemento);
-    assertFalse(bookInventory.findById(lordOfTheRings.getId()).isPresent());
+    assertTrue(bookInventory.findById(lordOfTheRings.getId()).isPresent());
   }
 }

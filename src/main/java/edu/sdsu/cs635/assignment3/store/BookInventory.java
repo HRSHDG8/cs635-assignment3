@@ -1,22 +1,26 @@
 package edu.sdsu.cs635.assignment3.store;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import edu.sdsu.cs635.assignment3.command.AddBook;
 import edu.sdsu.cs635.assignment3.command.Command;
 import edu.sdsu.cs635.assignment3.command.SellBook;
 import edu.sdsu.cs635.assignment3.decorator.SaveToFileDecorator;
 import edu.sdsu.cs635.assignment3.entity.Book;
-import edu.sdsu.cs635.assignment3.file.MementoFileHandler;
+import edu.sdsu.cs635.assignment3.file.FileOperator;
 import edu.sdsu.cs635.assignment3.memento.InventoryMemento;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 public class BookInventory implements Inventory<Integer, Book> {
   private Map<Integer, Book> bookStore;
+  private final FileOperator fileOperator;
 
   public BookInventory() {
     this.bookStore = new HashMap<>();
+    this.fileOperator = new FileOperator();
   }
 
   public Map<Integer, Book> getBookStore() {
@@ -55,7 +59,11 @@ public class BookInventory implements Inventory<Integer, Book> {
 
   @Override
   public InventoryMemento createMemento() {
-    new MementoFileHandler().addToFile(this);
+    boolean didClear = fileOperator.clearFile("command.json", new TypeReference<List<Object>>() {
+    });
+    if (didClear) {
+      fileOperator.writeToFile("inventory.json", this);
+    }
     return new InventoryMemento(bookStore);
   }
 
