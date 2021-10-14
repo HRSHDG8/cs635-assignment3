@@ -12,27 +12,27 @@ public class SellBook implements Command {
   private static final long serialVersionUID = -4778810560316362985L;
   private final Inventory<Integer, Book> bookInventory;
 
-  public Integer getId() {
-    return id;
+  private final Book book;
+
+  public SellBook(Inventory<Integer, Book> bookInventory, Book book) {
+    this.bookInventory = bookInventory;
+    this.book = book;
   }
 
-  private final Integer id;
-
-  public SellBook(Inventory<Integer, Book> bookInventory, Integer id) {
-    this.bookInventory = bookInventory;
-    this.id = id;
+  public Book getBook() {
+    return book;
   }
 
   @Override
   public void execute() {
     Map<Integer, Book> bookStore = bookInventory.getBookStore();
-    if (bookStore.containsKey(id)) {
-      Book book = bookStore.get(id);
-      if (book.getQuantity() <= 0) {
+    if (bookStore.containsKey(book.getId())) {
+      Book bookToBeSold = bookStore.get(book.getId());
+      if (bookToBeSold.getQuantity() <= 0) {
         throw new RuntimeException("Book is not available");
       } else {
-        book.setQuantity(book.getQuantity() - 1);
-        bookStore.put(book.getId(), book);
+        bookToBeSold.setQuantity(bookToBeSold.getQuantity() - 1);
+        bookStore.put(bookToBeSold.getId(), bookToBeSold);
       }
     } else {
       throw new RuntimeException("Book is not available");

@@ -30,9 +30,9 @@ class BookInventoryTest {
     bookInventory.add(harryPotter);
     Book lordOfTheRings = new Book(null, "Lord of the rings", 49.99f, 0);
     bookInventory.add(lordOfTheRings);
-    assertTrue(bookInventory.sell(lordOfTheRings.getId()));
-    assertFalse(bookInventory.sell(lordOfTheRings.getId()));
-    assertFalse(bookInventory.sell(10));
+    assertTrue(bookInventory.sell(lordOfTheRings));
+    assertFalse(bookInventory.sell(lordOfTheRings));
+    assertFalse(bookInventory.sell(new Book(10, "No Book", 0.99f, 1)));
   }
 
   @Test

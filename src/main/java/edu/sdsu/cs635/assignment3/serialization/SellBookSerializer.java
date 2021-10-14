@@ -12,7 +12,7 @@ public class SellBookSerializer extends JsonSerializer<SellBook> {
   public void serialize(SellBook sellBook, JsonGenerator jgen, SerializerProvider serializerProvider) throws IOException {
     jgen.writeStartObject();
     jgen.writeStringField("action", "sell");
-    jgen.writeNumberField("id", sellBook.getId());
+    jgen.writeObjectField("book", sellBook.getBook());
     jgen.writeEndObject();
   }
 }

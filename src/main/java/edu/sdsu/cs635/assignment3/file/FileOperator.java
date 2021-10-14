@@ -54,7 +54,6 @@ public class FileOperator {
       valueAsString = objectMapper.writeValueAsString(writable);
       Path source = Paths.get(this.getClass().getClassLoader().getResource(fileName).getPath().replaceFirst("/", ""));
       try (FileWriter fileWriter = new FileWriter(source.toFile())) {
-        System.out.println("Huuahhh + " + valueAsString);
         fileWriter.write(valueAsString);
       } catch (IOException e) {
         e.printStackTrace();

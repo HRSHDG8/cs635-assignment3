@@ -22,16 +22,18 @@ public class MainTest {
 
   @Test
   void add() {
-    Book book = new Book(null, "Harry Potter", 100.3f, 2);
-    bookInventory.add(book);
-    bookInventory.add(book);
+    Book harryPotter = new Book(null, "Harry Potter", 100.3f, 2);
+    bookInventory.add(harryPotter);
+    bookInventory.add(harryPotter);
     InventoryMemento inventoryMemento = bookInventory.createMemento();
     Book lordOfTheRings = new Book(null, "Lord of the rings", 299.99f, 0);
     Map<Integer, Book> map = inventoryMemento.getInventory();
     assertFalse(map.containsKey(lordOfTheRings.getId()));
     bookInventory.add(lordOfTheRings);
     inventoryMemento = bookInventory.createMemento();
-    bookInventory.sell(lordOfTheRings.getId());
+    bookInventory.sell(lordOfTheRings);
+    bookInventory.sell(harryPotter);
+    bookInventory.add(new Book(null, "Rick and Morty", 29.99f, 1));
     bookInventory.restore(inventoryMemento);
     assertTrue(bookInventory.findById(lordOfTheRings.getId()).isPresent());
   }

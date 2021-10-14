@@ -34,9 +34,9 @@ public class BookInventory implements Inventory<Integer, Book> {
   }
 
   @Override
-  public boolean sell(Integer id) {
+  public boolean sell(Book book) {
     try {
-      Command sellCommand = new SaveToFileDecorator(new SellBook(this, id));
+      Command sellCommand = new SaveToFileDecorator(new SellBook(this, book));
       sellCommand.execute();
       return true;
     } catch (RuntimeException r) {

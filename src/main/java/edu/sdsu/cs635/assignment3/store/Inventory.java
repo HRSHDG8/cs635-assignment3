@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface Inventory<I, T> {
   void add(T t);
 
-  boolean sell(I id);
+  boolean sell(T t);
 
   Optional<Book> findById(I i);
 
