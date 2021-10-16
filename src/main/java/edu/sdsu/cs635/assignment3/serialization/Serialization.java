@@ -1,4 +1,4 @@
-package edu.sdsu.cs635.assignment3;
+package edu.sdsu.cs635.assignment3.serialization;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

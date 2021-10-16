@@ -2,10 +2,10 @@ package edu.sdsu.cs635.assignment3.decorator;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.sdsu.cs635.assignment3.Serialization;
 import edu.sdsu.cs635.assignment3.command.Command;
 import edu.sdsu.cs635.assignment3.entity.Book;
 import edu.sdsu.cs635.assignment3.file.FileOperator;
+import edu.sdsu.cs635.assignment3.serialization.Serialization;
 import edu.sdsu.cs635.assignment3.store.Inventory;
 
 import java.io.IOException;

@@ -14,7 +14,8 @@ import java.io.Serializable;
 )
 @JsonSubTypes({
    @JsonSubTypes.Type(value = AddBook.class, name = "add"),
-   @JsonSubTypes.Type(value = SellBook.class, name = "sell")
+   @JsonSubTypes.Type(value = SellBook.class, name = "sell"),
+   @JsonSubTypes.Type(value = UpdatePrice.class, name = "update")
 })
 public interface Command extends Serializable {
   void execute(Inventory<Integer, Book> inventory);

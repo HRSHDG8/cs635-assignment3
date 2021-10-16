@@ -6,6 +6,7 @@ import edu.sdsu.cs635.assignment3.command.Command;
 import edu.sdsu.cs635.assignment3.entity.Book;
 import edu.sdsu.cs635.assignment3.file.FileOperator;
 import edu.sdsu.cs635.assignment3.memento.InventoryMemento;
+import edu.sdsu.cs635.assignment3.serialization.Serialization;
 import edu.sdsu.cs635.assignment3.store.BookInventory;
 import edu.sdsu.cs635.assignment3.store.Inventory;
 import org.junit.jupiter.api.BeforeEach;

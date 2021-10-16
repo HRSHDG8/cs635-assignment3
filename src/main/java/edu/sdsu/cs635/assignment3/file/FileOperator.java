@@ -3,7 +3,7 @@ package edu.sdsu.cs635.assignment3.file;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.sdsu.cs635.assignment3.Serialization;
+import edu.sdsu.cs635.assignment3.serialization.Serialization;
 
 import java.io.*;
 import java.nio.file.Path;
