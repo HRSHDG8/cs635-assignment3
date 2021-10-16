@@ -3,10 +3,9 @@ package edu.sdsu.cs635.assignment3;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.sdsu.cs635.assignment3.command.Command;
-import edu.sdsu.cs635.assignment3.entity.Book;
 import edu.sdsu.cs635.assignment3.file.FileOperator;
-import edu.sdsu.cs635.assignment3.memento.InventoryMemento;
 import edu.sdsu.cs635.assignment3.serialization.Serialization;
+import edu.sdsu.cs635.assignment3.store.Book;
 import edu.sdsu.cs635.assignment3.store.BookInventory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.List;
 
+import static edu.sdsu.cs635.assignment3.store.BookInventory.InventoryMemento;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

@@ -4,10 +4,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import edu.sdsu.cs635.assignment3.command.AddBook;
 import edu.sdsu.cs635.assignment3.command.CommandInvoker;
 import edu.sdsu.cs635.assignment3.command.SellBook;
-import edu.sdsu.cs635.assignment3.entity.Book;
 import edu.sdsu.cs635.assignment3.file.FileOperator;
-import edu.sdsu.cs635.assignment3.memento.InventoryMemento;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -70,5 +69,22 @@ public class BookInventory {
 
   public void restore(InventoryMemento inventoryMemento) {
     this.bookStore = inventoryMemento.getInventory();
+  }
+
+  public static class InventoryMemento implements Serializable {
+    private final Map<Integer, Book> inventory;
+
+    public InventoryMemento() {
+      this.inventory = new HashMap<>();
+    }
+
+    public InventoryMemento(Map<Integer, Book> inventory) {
+      this();
+      inventory.forEach((id, book) -> this.inventory.put(id, book.clone()));
+    }
+
+    public Map<Integer, Book> getInventory() {
+      return inventory;
+    }
   }
 }

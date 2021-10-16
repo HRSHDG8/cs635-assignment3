@@ -1,4 +1,4 @@
-package edu.sdsu.cs635.assignment3.entity;
+package edu.sdsu.cs635.assignment3.store;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

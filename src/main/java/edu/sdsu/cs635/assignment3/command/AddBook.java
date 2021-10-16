@@ -2,9 +2,9 @@ package edu.sdsu.cs635.assignment3.command;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import edu.sdsu.cs635.assignment3.entity.Book;
 import edu.sdsu.cs635.assignment3.serialization.AddBookDeSerializer;
 import edu.sdsu.cs635.assignment3.serialization.AddBookSerializer;
+import edu.sdsu.cs635.assignment3.store.Book;
 import edu.sdsu.cs635.assignment3.store.BookInventory;
 
 import java.util.Map;

@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import edu.sdsu.cs635.assignment3.command.SellBook;
-import edu.sdsu.cs635.assignment3.entity.Book;
+import edu.sdsu.cs635.assignment3.store.Book;
 
 import java.io.IOException;
 
