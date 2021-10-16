@@ -58,12 +58,13 @@ public class BookInventory implements Inventory<Integer, Book> {
 
   @Override
   public InventoryMemento createMemento() {
+    InventoryMemento inventoryMemento = new InventoryMemento(bookStore);
     boolean didClear = fileOperator.clearFile("command.json", new TypeReference<List<Object>>() {
     });
     if (didClear) {
-      fileOperator.writeToFile("inventory.json", this);
+      fileOperator.writeToFile("inventory.json", inventoryMemento);
     }
-    return new InventoryMemento(bookStore);
+    return inventoryMemento;
   }
 
   @Override

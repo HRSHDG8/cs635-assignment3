@@ -7,13 +7,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class InventoryMemento implements Serializable {
-  private final Map<Integer, Book> bookStore;
+  private final Map<Integer, Book> inventory;
 
-  public InventoryMemento(Map<Integer, Book> map) {
-    this.bookStore = new HashMap<>(map);
+  public InventoryMemento() {
+    this.inventory = new HashMap<>();
+  }
+
+  public InventoryMemento(Map<Integer, Book> inventory) {
+    this();
+    inventory.forEach((id, book) -> this.inventory.put(id, book.clone()));
   }
 
   public Map<Integer, Book> getInventory() {
-    return bookStore;
+    return inventory;
   }
 }
