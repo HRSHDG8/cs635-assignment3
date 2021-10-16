@@ -2,10 +2,8 @@ package edu.sdsu.cs635.assignment3.store;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import edu.sdsu.cs635.assignment3.command.AddBook;
-import edu.sdsu.cs635.assignment3.command.Command;
 import edu.sdsu.cs635.assignment3.command.InventoryCommandExecutor;
 import edu.sdsu.cs635.assignment3.command.SellBook;
-import edu.sdsu.cs635.assignment3.decorator.SaveToFileDecorator;
 import edu.sdsu.cs635.assignment3.entity.Book;
 import edu.sdsu.cs635.assignment3.file.FileOperator;
 import edu.sdsu.cs635.assignment3.memento.InventoryMemento;
@@ -32,15 +30,13 @@ public class BookInventory implements Inventory<Integer, Book> {
 
   @Override
   public void add(Book book) {
-    Command addBook = new SaveToFileDecorator(new AddBook(book));
-    executor.execute(addBook);
+    executor.execute(new AddBook(book));
   }
 
   @Override
   public boolean sell(Book book) {
     try {
-      Command sellCommand = new SaveToFileDecorator(new SellBook(book));
-      executor.execute(sellCommand);
+      executor.execute(new SellBook(book));
       return true;
     } catch (RuntimeException r) {
       return false;

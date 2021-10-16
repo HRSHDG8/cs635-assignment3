@@ -1,5 +1,6 @@
 package edu.sdsu.cs635.assignment3.command;
 
+import edu.sdsu.cs635.assignment3.decorator.SaveToFileDecorator;
 import edu.sdsu.cs635.assignment3.entity.Book;
 import edu.sdsu.cs635.assignment3.store.Inventory;
 
@@ -12,7 +13,8 @@ public class InventoryCommandExecutor {
   }
 
   public void execute(Command command) {
-    command.execute(inventory);
+    Command decoratedCommand = new SaveToFileDecorator(command);
+    decoratedCommand.execute(inventory);
   }
 
 
