@@ -17,6 +17,6 @@ public class AddBookDeSerializer extends JsonDeserializer<AddBook> {
     JsonNode bookNode = node.get("book");
     Book book = new Book(bookNode.get("id").asInt(), bookNode.get("name").asText(), bookNode.get("price").floatValue(), bookNode.get("quantity").asInt());
 
-    return new AddBook(null, book);
+    return new AddBook(book);
   }
 }

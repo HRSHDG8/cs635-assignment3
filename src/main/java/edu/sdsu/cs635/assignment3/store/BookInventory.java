@@ -3,6 +3,7 @@ package edu.sdsu.cs635.assignment3.store;
 import com.fasterxml.jackson.core.type.TypeReference;
 import edu.sdsu.cs635.assignment3.command.AddBook;
 import edu.sdsu.cs635.assignment3.command.Command;
+import edu.sdsu.cs635.assignment3.command.InventoryCommandExecutor;
 import edu.sdsu.cs635.assignment3.command.SellBook;
 import edu.sdsu.cs635.assignment3.decorator.SaveToFileDecorator;
 import edu.sdsu.cs635.assignment3.entity.Book;
@@ -17,10 +18,12 @@ import java.util.Optional;
 public class BookInventory implements Inventory<Integer, Book> {
   private Map<Integer, Book> bookStore;
   private final FileOperator fileOperator;
+  private final InventoryCommandExecutor executor;
 
   public BookInventory() {
     this.bookStore = new HashMap<>();
     this.fileOperator = new FileOperator();
+    executor = new InventoryCommandExecutor(this);
   }
 
   public Map<Integer, Book> getBookStore() {
@@ -29,15 +32,15 @@ public class BookInventory implements Inventory<Integer, Book> {
 
   @Override
   public void add(Book book) {
-    Command addBook = new SaveToFileDecorator(new AddBook(this, book));
-    addBook.execute();
+    Command addBook = new SaveToFileDecorator(new AddBook(book));
+    executor.execute(addBook);
   }
 
   @Override
   public boolean sell(Book book) {
     try {
-      Command sellCommand = new SaveToFileDecorator(new SellBook(this, book));
-      sellCommand.execute();
+      Command sellCommand = new SaveToFileDecorator(new SellBook(book));
+      executor.execute(sellCommand);
       return true;
     } catch (RuntimeException r) {
       return false;

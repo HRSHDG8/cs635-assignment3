@@ -10,12 +10,10 @@ import java.util.Map;
 @JsonSerialize(using = SellBookSerializer.class)
 public class SellBook implements Command {
   private static final long serialVersionUID = -4778810560316362985L;
-  private final Inventory<Integer, Book> bookInventory;
 
   private final Book book;
 
-  public SellBook(Inventory<Integer, Book> bookInventory, Book book) {
-    this.bookInventory = bookInventory;
+  public SellBook(Book book) {
     this.book = book;
   }
 
@@ -24,7 +22,7 @@ public class SellBook implements Command {
   }
 
   @Override
-  public void execute() {
+  public void execute(Inventory<Integer, Book> bookInventory) {
     Map<Integer, Book> bookStore = bookInventory.getBookStore();
     if (bookStore.containsKey(book.getId())) {
       Book bookToBeSold = bookStore.get(book.getId());

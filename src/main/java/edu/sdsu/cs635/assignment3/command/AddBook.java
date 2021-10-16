@@ -13,16 +13,14 @@ import java.util.Map;
 @JsonDeserialize(using = AddBookDeSerializer.class)
 public class AddBook implements Command {
   private static final long serialVersionUID = -4778810560316362984L;
-  private final Inventory<Integer, Book> bookInventory;
   private final Book book;
 
-  public AddBook(Inventory<Integer, Book> bookInventory, Book book) {
-    this.bookInventory = bookInventory;
+  public AddBook(Book book) {
     this.book = book;
   }
 
   @Override
-  public void execute() {
+  public void execute(Inventory<Integer, Book> bookInventory) {
     Map<Integer, Book> bookStore = bookInventory.getBookStore();
     if (bookStore.containsKey(book.getId())) {
       Book inventoryBook = bookStore.get(book.getId());
@@ -31,13 +29,13 @@ public class AddBook implements Command {
       if (book.getQuantity() <= 0) {
         book.setQuantity(1);
       }
-      book.setId(computeIndex());
+      book.setId(computeIndex(bookInventory));
     }
     bookStore.put(book.getId(), book);
   }
 
 
-  private int computeIndex() {
+  private int computeIndex(Inventory<Integer, Book> bookInventory) {
     Map<Integer, Book> bookStore = bookInventory.getBookStore();
     return bookStore.keySet().stream().max(Integer::compareTo).orElse(0) + 1;
   }
