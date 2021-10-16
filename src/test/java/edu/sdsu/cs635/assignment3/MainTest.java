@@ -37,4 +37,25 @@ public class MainTest {
     bookInventory.restore(inventoryMemento);
     assertTrue(bookInventory.findById(lordOfTheRings.getId()).isPresent());
   }
+
+  @Test
+  public void addNew() {
+
+    Book harryPotter = new Book(null, "Harry Potter", 100.3f, 2);
+    bookInventory.add(harryPotter);
+    bookInventory.add(harryPotter);
+    bookInventory.add(harryPotter);
+    bookInventory.add(harryPotter);
+    bookInventory.add(harryPotter);
+    bookInventory.sell(harryPotter);
+    bookInventory.sell(harryPotter);
+    Book lordOfTheRings = new Book(null, "Lord of the rings", 299.99f, 0);
+    bookInventory.add(lordOfTheRings);
+    bookInventory.sell(lordOfTheRings);
+    bookInventory.add(lordOfTheRings);
+    Book rickAndMorty = new Book(null, "Rick and Morty", 29.99f, 1);
+    bookInventory.add(rickAndMorty);
+    bookInventory.sell(rickAndMorty);
+    assertTrue(bookInventory.findById(lordOfTheRings.getId()).isPresent());
+  }
 }

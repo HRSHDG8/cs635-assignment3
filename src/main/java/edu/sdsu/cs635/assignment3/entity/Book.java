@@ -1,6 +1,5 @@
 package edu.sdsu.cs635.assignment3.entity;
 
-import edu.sdsu.cs635.assignment3.memento.InventoryMemento;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

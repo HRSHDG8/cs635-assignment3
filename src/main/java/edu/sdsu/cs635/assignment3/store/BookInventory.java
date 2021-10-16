@@ -2,7 +2,7 @@ package edu.sdsu.cs635.assignment3.store;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import edu.sdsu.cs635.assignment3.command.AddBook;
-import edu.sdsu.cs635.assignment3.command.InventoryCommandExecutor;
+import edu.sdsu.cs635.assignment3.command.CommandInvoker;
 import edu.sdsu.cs635.assignment3.command.SellBook;
 import edu.sdsu.cs635.assignment3.entity.Book;
 import edu.sdsu.cs635.assignment3.file.FileOperator;
@@ -16,12 +16,12 @@ import java.util.Optional;
 public class BookInventory implements Inventory<Integer, Book> {
   private Map<Integer, Book> bookStore;
   private final FileOperator fileOperator;
-  private final InventoryCommandExecutor executor;
+  private final CommandInvoker executor;
 
   public BookInventory() {
     this.bookStore = new HashMap<>();
     this.fileOperator = new FileOperator();
-    executor = new InventoryCommandExecutor(this);
+    this.executor = new CommandInvoker(this);
   }
 
   public Map<Integer, Book> getBookStore() {

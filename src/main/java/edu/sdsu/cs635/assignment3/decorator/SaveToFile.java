@@ -12,12 +12,12 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
-public class SaveToFileDecorator extends CommandDecorator {
+public class SaveToFile extends CommandDecorator {
   private static final String COMMAND_JSON = "command.json";
   private final FileOperator fileOperator;
   private final ObjectMapper objectMapper;
 
-  public SaveToFileDecorator(Command command) {
+  public SaveToFile(Command command) {
     super(command);
     this.objectMapper = Serialization.getInstance();
     fileOperator = new FileOperator();
@@ -26,25 +26,33 @@ public class SaveToFileDecorator extends CommandDecorator {
   @Override
   public void execute(Inventory<Integer, Book> inventory) {
     //write to file
-    addToFile(command);
-    command.execute(inventory);
+    List<Command> commands = addToFile(command);
+    try {
+      command.execute(inventory);
+      if (commands.size() > 10) {
+        inventory.createMemento();
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
-  private void addToFile(Command command) {
+  private List<Command> addToFile(Command command) {
+    List<Command> commands = Collections.emptyList();
     try {
       String line = fileOperator.readFile(COMMAND_JSON);
       if (line.isEmpty()) {
-        fileOperator.writeToFile(COMMAND_JSON, Collections.singletonList(command));
+        commands = Collections.singletonList(command);
       } else {
-        List<Command> commands = objectMapper.readValue(line, new TypeReference<List<Command>>() {
+        commands = objectMapper.readValue(line, new TypeReference<List<Command>>() {
         });
         commands.add(command);
-        fileOperator.writeToFile(COMMAND_JSON, commands);
       }
+      fileOperator.writeToFile(COMMAND_JSON, commands);
     } catch (IOException e) {
       e.printStackTrace();
     }
-
+    return commands;
   }
 
 }
