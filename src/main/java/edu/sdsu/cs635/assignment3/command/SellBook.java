@@ -1,13 +1,16 @@
 package edu.sdsu.cs635.assignment3.command;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import edu.sdsu.cs635.assignment3.entity.Book;
+import edu.sdsu.cs635.assignment3.serialization.SellBookDeSerializer;
 import edu.sdsu.cs635.assignment3.serialization.SellBookSerializer;
 import edu.sdsu.cs635.assignment3.store.Inventory;
 
 import java.util.Map;
 
 @JsonSerialize(using = SellBookSerializer.class)
+@JsonDeserialize(using = SellBookDeSerializer.class)
 public class SellBook implements Command {
   private static final long serialVersionUID = -4778810560316362985L;
 

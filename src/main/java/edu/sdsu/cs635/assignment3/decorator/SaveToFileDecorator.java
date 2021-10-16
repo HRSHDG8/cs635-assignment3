@@ -36,7 +36,7 @@ public class SaveToFileDecorator extends CommandDecorator {
       if (line.isEmpty()) {
         fileOperator.writeToFile(COMMAND_JSON, Collections.singletonList(command));
       } else {
-        List<Object> commands = objectMapper.readValue(line, new TypeReference<List<Object>>() {
+        List<Command> commands = objectMapper.readValue(line, new TypeReference<List<Command>>() {
         });
         commands.add(command);
         fileOperator.writeToFile(COMMAND_JSON, commands);
