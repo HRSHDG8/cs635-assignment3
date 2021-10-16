@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import edu.sdsu.cs635.assignment3.entity.Book;
 import edu.sdsu.cs635.assignment3.serialization.UpdatePriceDeSerializer;
 import edu.sdsu.cs635.assignment3.serialization.UpdatePriceSerializer;
-import edu.sdsu.cs635.assignment3.store.Inventory;
+import edu.sdsu.cs635.assignment3.store.BookInventory;
 
 import java.util.Map;
 
@@ -20,7 +20,7 @@ public class UpdatePrice implements Command {
   }
 
   @Override
-  public void execute(Inventory<Integer, Book> bookInventory) {
+  public void execute(BookInventory bookInventory) {
     Map<Integer, Book> bookStore = bookInventory.getBookStore();
     if (bookStore.containsKey(book.getId())) {
       Book inventoryBook = bookStore.get(book.getId());

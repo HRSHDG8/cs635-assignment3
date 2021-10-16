@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import edu.sdsu.cs635.assignment3.entity.Book;
 import edu.sdsu.cs635.assignment3.serialization.SellBookDeSerializer;
 import edu.sdsu.cs635.assignment3.serialization.SellBookSerializer;
-import edu.sdsu.cs635.assignment3.store.Inventory;
+import edu.sdsu.cs635.assignment3.store.BookInventory;
 
 import java.util.Map;
 
@@ -25,7 +25,7 @@ public class SellBook implements Command {
   }
 
   @Override
-  public void execute(Inventory<Integer, Book> bookInventory) {
+  public void execute(BookInventory bookInventory) {
     Map<Integer, Book> bookStore = bookInventory.getBookStore();
     if (bookStore.containsKey(book.getId())) {
       Book bookToBeSold = bookStore.get(book.getId());

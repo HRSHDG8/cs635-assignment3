@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import edu.sdsu.cs635.assignment3.entity.Book;
 import edu.sdsu.cs635.assignment3.serialization.AddBookDeSerializer;
 import edu.sdsu.cs635.assignment3.serialization.AddBookSerializer;
-import edu.sdsu.cs635.assignment3.store.Inventory;
+import edu.sdsu.cs635.assignment3.store.BookInventory;
 
 import java.util.Map;
 
@@ -20,7 +20,7 @@ public class AddBook implements Command {
   }
 
   @Override
-  public void execute(Inventory<Integer, Book> bookInventory) {
+  public void execute(BookInventory bookInventory) {
     Map<Integer, Book> bookStore = bookInventory.getBookStore();
     if (bookStore.containsKey(book.getId())) {
       Book inventoryBook = bookStore.get(book.getId());
@@ -35,7 +35,7 @@ public class AddBook implements Command {
   }
 
 
-  private int computeIndex(Inventory<Integer, Book> bookInventory) {
+  private int computeIndex(BookInventory bookInventory) {
     Map<Integer, Book> bookStore = bookInventory.getBookStore();
     return bookStore.keySet().stream().max(Integer::compareTo).orElse(0) + 1;
   }

@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BookInventoryTest {
 
-  private Inventory<Integer, Book> bookInventory;
+  private BookInventory bookInventory;
 
   @BeforeEach
   void setUp() {

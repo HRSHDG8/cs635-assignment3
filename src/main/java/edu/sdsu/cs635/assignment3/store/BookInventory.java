@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public class BookInventory implements Inventory<Integer, Book> {
+public class BookInventory {
   private Map<Integer, Book> bookStore;
   private final FileOperator fileOperator;
   private final CommandInvoker executor;
@@ -28,12 +28,12 @@ public class BookInventory implements Inventory<Integer, Book> {
     return bookStore;
   }
 
-  @Override
+
   public void add(Book book) {
     executor.execute(new AddBook(book));
   }
 
-  @Override
+
   public boolean sell(Book book) {
     try {
       executor.execute(new SellBook(book));
@@ -43,12 +43,12 @@ public class BookInventory implements Inventory<Integer, Book> {
     }
   }
 
-  @Override
+
   public Optional<Book> findById(Integer id) {
     return Optional.ofNullable(bookStore.get(id));
   }
 
-  @Override
+
   public Optional<Book> findByName(String name) {
     return bookStore.values()
        .stream()
@@ -56,7 +56,7 @@ public class BookInventory implements Inventory<Integer, Book> {
        .findFirst();
   }
 
-  @Override
+
   public InventoryMemento createMemento() {
     InventoryMemento inventoryMemento = new InventoryMemento(bookStore);
     boolean didClear = fileOperator.clearFile("command.json", new TypeReference<List<Object>>() {
@@ -67,7 +67,7 @@ public class BookInventory implements Inventory<Integer, Book> {
     return inventoryMemento;
   }
 
-  @Override
+
   public void restore(InventoryMemento inventoryMemento) {
     this.bookStore = inventoryMemento.getInventory();
   }

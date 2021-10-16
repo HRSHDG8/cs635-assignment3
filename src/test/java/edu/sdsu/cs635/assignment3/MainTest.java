@@ -8,7 +8,6 @@ import edu.sdsu.cs635.assignment3.file.FileOperator;
 import edu.sdsu.cs635.assignment3.memento.InventoryMemento;
 import edu.sdsu.cs635.assignment3.serialization.Serialization;
 import edu.sdsu.cs635.assignment3.store.BookInventory;
-import edu.sdsu.cs635.assignment3.store.Inventory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MainTest {
-  private Inventory<Integer, Book> bookInventory;
+  private BookInventory bookInventory;
   private final FileOperator fileOperator = new FileOperator();
   private final ObjectMapper objectMapper = Serialization.getInstance();
 
