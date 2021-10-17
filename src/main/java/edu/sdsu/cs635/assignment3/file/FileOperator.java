@@ -43,8 +43,6 @@ public class FileOperator {
         line.append(temp);
       }
       return line.toString();
-    } catch (IOException e) {
-      throw e;
     }
   }
 

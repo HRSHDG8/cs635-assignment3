@@ -34,7 +34,6 @@ public class AddBook implements Command {
     bookStore.put(book.getId(), book);
   }
 
-
   private int computeIndex(BookInventory bookInventory) {
     Map<Integer, Book> bookStore = bookInventory.getBookStore();
     return bookStore.keySet().stream().max(Integer::compareTo).orElse(0) + 1;

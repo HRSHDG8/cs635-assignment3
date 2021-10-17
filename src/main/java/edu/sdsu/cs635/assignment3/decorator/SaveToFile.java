@@ -19,7 +19,7 @@ public class SaveToFile extends CommandDecorator {
   public SaveToFile(Command command) {
     super(command);
     this.objectMapper = Serialization.getInstance();
-    fileOperator = new FileOperator();
+    this.fileOperator = new FileOperator();
   }
 
   @Override

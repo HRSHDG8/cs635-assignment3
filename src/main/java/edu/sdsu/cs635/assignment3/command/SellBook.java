@@ -20,10 +20,6 @@ public class SellBook implements Command {
     this.book = book;
   }
 
-  public Book getBook() {
-    return book;
-  }
-
   @Override
   public void execute(BookInventory bookInventory) {
     Map<Integer, Book> bookStore = bookInventory.getBookStore();
@@ -38,5 +34,9 @@ public class SellBook implements Command {
     } else {
       throw new RuntimeException("Book is not available");
     }
+  }
+
+  public Book getBook() {
+    return book;
   }
 }
