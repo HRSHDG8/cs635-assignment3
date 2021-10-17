@@ -17,7 +17,7 @@ import static edu.sdsu.cs635.assignment3.store.BookInventory.InventoryMemento;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class MainTest {
+public class IntegrationTest {
   private BookInventory bookInventory;
   private final FileOperator fileOperator = new FileOperator();
   private final ObjectMapper objectMapper = Serialization.getInstance();
@@ -30,7 +30,7 @@ public class MainTest {
 
   @Test
   public void addNew() {
-    Book harryPotter = new Book(null, "Harry Potter", 100.3f, 2);
+    Book harryPotter = new Book("Harry Potter", 100.3f, 2);
     bookInventory.add(harryPotter);
     bookInventory.add(harryPotter);
     bookInventory.add(harryPotter);
@@ -38,11 +38,11 @@ public class MainTest {
     bookInventory.add(harryPotter);
     bookInventory.sell(harryPotter);
     bookInventory.sell(harryPotter);
-    Book lordOfTheRings = new Book(null, "Lord of the rings", 299.99f, 0);
+    Book lordOfTheRings = new Book("Lord of the rings", 299.99f, 0);
     bookInventory.add(lordOfTheRings);
     bookInventory.sell(lordOfTheRings);
     bookInventory.add(lordOfTheRings);
-    Book rickAndMorty = new Book(null, "Rick and Morty", 29.99f, 1);
+    Book rickAndMorty = new Book("Rick and Morty", 29.99f, 1);
     bookInventory.add(rickAndMorty);
     bookInventory.sell(rickAndMorty);
     assertTrue(bookInventory.findById(lordOfTheRings.getId()).isPresent());

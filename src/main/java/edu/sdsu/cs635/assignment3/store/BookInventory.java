@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import edu.sdsu.cs635.assignment3.command.AddBook;
 import edu.sdsu.cs635.assignment3.command.CommandInvoker;
 import edu.sdsu.cs635.assignment3.command.SellBook;
+import edu.sdsu.cs635.assignment3.command.UpdatePrice;
 import edu.sdsu.cs635.assignment3.file.FileOperator;
 
 import java.io.Serializable;
@@ -40,6 +41,10 @@ public class BookInventory {
     } catch (RuntimeException r) {
       return false;
     }
+  }
+
+  public void updatePrice(Book book) {
+    executor.execute(new UpdatePrice(book));
   }
 
 
