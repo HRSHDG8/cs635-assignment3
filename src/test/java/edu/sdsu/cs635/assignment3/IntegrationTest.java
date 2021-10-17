@@ -7,8 +7,7 @@ import edu.sdsu.cs635.assignment3.file.FileOperator;
 import edu.sdsu.cs635.assignment3.serialization.Serialization;
 import edu.sdsu.cs635.assignment3.store.Book;
 import edu.sdsu.cs635.assignment3.store.BookInventory;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -17,6 +16,7 @@ import static edu.sdsu.cs635.assignment3.store.BookInventory.InventoryMemento;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class IntegrationTest {
   private BookInventory bookInventory;
   private final FileOperator fileOperator = new FileOperator();
@@ -29,6 +29,7 @@ public class IntegrationTest {
   }
 
   @Test
+  @Order(1)
   public void addNew() {
     Book harryPotter = new Book("Harry Potter", 100.3f, 2);
     bookInventory.add(harryPotter);
@@ -49,6 +50,7 @@ public class IntegrationTest {
   }
 
   @Test
+  @Order(2)
   public void restore() throws IOException {
     InventoryMemento inventoryMemento = objectMapper.readValue(fileOperator.readFile("inventory.json"), InventoryMemento.class);
     List<Command> commands = objectMapper.readValue(fileOperator.readFile("command.json"), new TypeReference<List<Command>>() {

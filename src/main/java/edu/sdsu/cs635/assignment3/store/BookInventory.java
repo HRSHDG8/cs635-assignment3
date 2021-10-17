@@ -34,13 +34,8 @@ public class BookInventory {
   }
 
 
-  public boolean sell(Book book) {
-    try {
-      executor.execute(new SellBook(book));
-      return true;
-    } catch (RuntimeException r) {
-      return false;
-    }
+  public void sell(Book book) {
+    executor.execute(new SellBook(book));
   }
 
   public void updatePrice(Book book) {
