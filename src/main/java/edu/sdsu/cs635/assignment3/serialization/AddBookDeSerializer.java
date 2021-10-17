@@ -5,8 +5,8 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
+import edu.sdsu.cs635.assignment3.Book;
 import edu.sdsu.cs635.assignment3.command.AddBook;
-import edu.sdsu.cs635.assignment3.store.Book;
 
 import java.io.IOException;
 

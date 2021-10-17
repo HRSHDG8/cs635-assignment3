@@ -2,7 +2,7 @@ package edu.sdsu.cs635.assignment3.command;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import edu.sdsu.cs635.assignment3.store.BookInventory;
+import edu.sdsu.cs635.assignment3.BookInventory;
 
 import java.io.Serializable;
 

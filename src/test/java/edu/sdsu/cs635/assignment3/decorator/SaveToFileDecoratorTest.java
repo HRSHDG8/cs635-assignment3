@@ -1,10 +1,10 @@
 package edu.sdsu.cs635.assignment3.decorator;
 
+import edu.sdsu.cs635.assignment3.Book;
+import edu.sdsu.cs635.assignment3.BookInventory;
 import edu.sdsu.cs635.assignment3.command.AddBook;
 import edu.sdsu.cs635.assignment3.command.Command;
 import edu.sdsu.cs635.assignment3.file.FileOperator;
-import edu.sdsu.cs635.assignment3.store.Book;
-import edu.sdsu.cs635.assignment3.store.BookInventory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

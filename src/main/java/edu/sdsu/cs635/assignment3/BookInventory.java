@@ -1,4 +1,4 @@
-package edu.sdsu.cs635.assignment3.store;
+package edu.sdsu.cs635.assignment3;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import edu.sdsu.cs635.assignment3.command.AddBook;

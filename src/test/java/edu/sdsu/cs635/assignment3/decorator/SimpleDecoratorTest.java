@@ -1,6 +1,6 @@
 package edu.sdsu.cs635.assignment3.decorator;
 
-import edu.sdsu.cs635.assignment3.store.BookInventory;
+import edu.sdsu.cs635.assignment3.BookInventory;
 import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.atomic.AtomicInteger;

@@ -2,10 +2,10 @@ package edu.sdsu.cs635.assignment3.command;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import edu.sdsu.cs635.assignment3.Book;
+import edu.sdsu.cs635.assignment3.BookInventory;
 import edu.sdsu.cs635.assignment3.serialization.UpdatePriceDeSerializer;
 import edu.sdsu.cs635.assignment3.serialization.UpdatePriceSerializer;
-import edu.sdsu.cs635.assignment3.store.Book;
-import edu.sdsu.cs635.assignment3.store.BookInventory;
 
 import java.util.Map;
 

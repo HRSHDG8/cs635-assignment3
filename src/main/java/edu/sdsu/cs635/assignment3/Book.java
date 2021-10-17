@@ -1,4 +1,4 @@
-package edu.sdsu.cs635.assignment3.store;
+package edu.sdsu.cs635.assignment3;
 
 import java.io.Serializable;
 
