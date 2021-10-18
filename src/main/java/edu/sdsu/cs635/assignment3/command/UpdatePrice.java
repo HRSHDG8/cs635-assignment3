@@ -4,8 +4,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import edu.sdsu.cs635.assignment3.Book;
 import edu.sdsu.cs635.assignment3.inventory.Inventory;
-import edu.sdsu.cs635.assignment3.serialization.UpdatePriceDeSerializer;
-import edu.sdsu.cs635.assignment3.serialization.UpdatePriceSerializer;
+import edu.sdsu.cs635.assignment3.serialization.deserializer.UpdatePriceDeSerializer;
+import edu.sdsu.cs635.assignment3.serialization.serializer.UpdatePriceSerializer;
 
 @JsonSerialize(using = UpdatePriceSerializer.class)
 @JsonDeserialize(using = UpdatePriceDeSerializer.class)

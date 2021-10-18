@@ -1,4 +1,4 @@
-package edu.sdsu.cs635.assignment3.serialization;
+package edu.sdsu.cs635.assignment3.serialization.serializer;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;

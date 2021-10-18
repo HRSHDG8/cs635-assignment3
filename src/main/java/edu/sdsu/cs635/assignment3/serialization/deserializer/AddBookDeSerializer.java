@@ -1,4 +1,4 @@
-package edu.sdsu.cs635.assignment3.serialization;
+package edu.sdsu.cs635.assignment3.serialization.deserializer;
 
 import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonParser;

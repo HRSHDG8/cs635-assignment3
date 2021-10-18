@@ -2,9 +2,10 @@ package edu.sdsu.cs635.assignment3.inventory;
 
 import edu.sdsu.cs635.assignment3.Book;
 
+import java.io.Serializable;
 import java.util.Optional;
 
-public interface Inventory {
+public interface Inventory extends Serializable {
   void add(Book book);
 
   void sell(Book book);
