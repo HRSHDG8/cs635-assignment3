@@ -3,6 +3,7 @@ package edu.sdsu.cs635.assignment3.inventory;
 import edu.sdsu.cs635.assignment3.Book;
 import edu.sdsu.cs635.assignment3.InventoryState;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Optional;
 
@@ -17,7 +18,7 @@ public interface Inventory extends Serializable, Cloneable {
 
   Optional<Book> findByName(String name);
 
-  InventoryState createState();
+  InventoryState createState() throws IOException;
 
   void restoreState(InventoryState state);
 }

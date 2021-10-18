@@ -8,16 +8,28 @@ import edu.sdsu.cs635.assignment3.command.SellBook;
 import edu.sdsu.cs635.assignment3.command.UpdatePrice;
 import edu.sdsu.cs635.assignment3.decorator.CommandInvoker;
 import edu.sdsu.cs635.assignment3.decorator.WithSaveToFile;
+import edu.sdsu.cs635.assignment3.serialization.Serialization;
 
+import java.io.IOException;
 import java.util.Optional;
 
 public class DecoratedInventory implements Inventory {
-  private Inventory inventory;
+  private static final long serialVersionUID = -4778810560316362991L;
+  private final Inventory inventory;
   private final CommandInvoker invoker;
+  private final Serialization serialization;
 
   public DecoratedInventory(Inventory inventory) {
     this.inventory = inventory;
-    this.invoker = new CommandInvoker(this);
+    this.serialization = Serialization.getInstance();
+    this.invoker = new CommandInvoker(inventory);
+    InventoryState inventoryState;
+    try {
+      inventoryState = (InventoryState) this.serialization.read("inventory.ser");
+      this.restoreState(inventoryState);
+    } catch (IOException | ClassNotFoundException e) {
+
+    }
   }
 
   @Override
@@ -49,8 +61,10 @@ public class DecoratedInventory implements Inventory {
   }
 
   @Override
-  public InventoryState createState() {
-    return inventory.createState();
+  public InventoryState createState() throws IOException {
+    InventoryState inventoryState = inventory.createState();
+    serialization.write("inventory.ser", inventoryState);
+    return inventoryState;
   }
 
   @Override
