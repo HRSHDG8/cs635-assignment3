@@ -56,8 +56,8 @@ public class DecoratedInventory implements Inventory {
   }
 
   @Override
-  public Optional<Book> findById(Integer id) {
-    return inventory.findById(id);
+  public Optional<Book> findById(Integer isbn) {
+    return inventory.findById(isbn);
   }
 
   @Override

@@ -68,8 +68,8 @@ public class BookInventory implements Inventory {
   }
 
   @Override
-  public Optional<Book> findById(Integer id) {
-    return Optional.ofNullable(bookStore.get(id));
+  public Optional<Book> findById(Integer isbn) {
+    return Optional.ofNullable(bookStore.get(isbn));
   }
 
   @Override
