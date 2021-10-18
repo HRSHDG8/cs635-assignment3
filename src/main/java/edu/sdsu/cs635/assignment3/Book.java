@@ -3,7 +3,7 @@ package edu.sdsu.cs635.assignment3;
 import java.io.Serializable;
 
 public class Book implements Serializable, Cloneable {
-  private static final long serialVersionUID = -4778810560316362986L;
+  private static final long serialVersionUID = -4778810560316362989L;
   private Integer isbn;
   private String name;
   private Float price;
