@@ -2,7 +2,7 @@ package edu.sdsu.cs635.assignment3.command;
 
 import edu.sdsu.cs635.assignment3.inventory.DecoratedInventory;
 import edu.sdsu.cs635.assignment3.inventory.Inventory;
-import edu.sdsu.cs635.assignment3.serialization.Serialization;
+import edu.sdsu.cs635.assignment3.serialization.Serializer;
 
 import java.io.EOFException;
 import java.io.IOException;
@@ -11,11 +11,11 @@ import java.util.List;
 
 public class SaveToFile extends CommandDecorator {
   private static final String COMMAND_JSON = "command.ser";
-  private final Serialization serialization;
+  private final Serializer serializer;
 
   public SaveToFile(Command command) {
     super(command);
-    this.serialization = Serialization.getInstance();
+    this.serializer = Serializer.getInstance();
   }
 
   @Override
@@ -25,7 +25,7 @@ public class SaveToFile extends CommandDecorator {
       command.execute(inventory);
       List<Command> commands = addToFile(command);
       if (commands.size() >= 10) {
-        serialization.write(COMMAND_JSON, new ArrayList<>());
+        serializer.write(COMMAND_JSON, new ArrayList<>());
         new DecoratedInventory(inventory).createState();
       }
     } catch (IOException | ClassNotFoundException e) {
@@ -37,12 +37,12 @@ public class SaveToFile extends CommandDecorator {
   private List<Command> addToFile(Command command) throws IOException, ClassNotFoundException {
     List<Command> commands;
     try {
-      commands = (List<Command>) serialization.read(COMMAND_JSON);
+      commands = (List<Command>) serializer.read(COMMAND_JSON);
     } catch (EOFException e) {
       commands = new ArrayList<>();
     }
     commands.add(command);
-    serialization.write(COMMAND_JSON, commands);
+    serializer.write(COMMAND_JSON, commands);
     return commands;
   }
 

@@ -14,12 +14,12 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class SerializationTest {
-  private Serialization serialization;
+class SerializerTest {
+  private Serializer serializer;
 
   @BeforeEach
   void setUp() {
-    serialization = Serialization.getInstance();
+    serializer = Serializer.getInstance();
   }
 
   @Test
@@ -27,8 +27,8 @@ class SerializationTest {
   public void writeToFile() throws IOException, ClassNotFoundException {
     Command add = new AddBook(new Book(1, "Harry", 10f, 1));
     Command sell = new SellBook(new Book(1, "Harry", 10f, 1));
-    serialization.write("test.ser", new ArrayList<>(Arrays.asList(add, sell)));
-    List<Command> commands = (List<Command>) serialization.read("test.ser");
+    serializer.write("test.ser", new ArrayList<>(Arrays.asList(add, sell)));
+    List<Command> commands = (List<Command>) serializer.read("test.ser");
     assertEquals(2, commands.size());
   }
 

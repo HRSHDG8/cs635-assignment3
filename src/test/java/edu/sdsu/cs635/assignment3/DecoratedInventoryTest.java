@@ -4,7 +4,7 @@ import edu.sdsu.cs635.assignment3.inventory.BookInventory;
 import edu.sdsu.cs635.assignment3.inventory.DecoratedInventory;
 import edu.sdsu.cs635.assignment3.inventory.Inventory;
 import edu.sdsu.cs635.assignment3.inventory.InventoryState;
-import edu.sdsu.cs635.assignment3.serialization.Serialization;
+import edu.sdsu.cs635.assignment3.serialization.Serializer;
 import org.junit.jupiter.api.*;
 
 import java.io.IOException;
@@ -21,9 +21,9 @@ public class DecoratedInventoryTest {
 
   @BeforeAll
   static void clearInventoryAndCommands() throws IOException {
-    Serialization serialization = Serialization.getInstance();
-    serialization.write("inventory.ser", new InventoryState(new BookInventory()));
-    serialization.write("command.ser", new ArrayList<>());
+    Serializer serializer = Serializer.getInstance();
+    serializer.write("inventory.ser", new InventoryState(new BookInventory()));
+    serializer.write("command.ser", new ArrayList<>());
   }
 
   @BeforeEach

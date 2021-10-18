@@ -2,6 +2,16 @@ package edu.sdsu.cs635.assignment3;
 
 import java.io.Serializable;
 
+/**
+ * Entity class that represents a real life book
+ * Each book has
+ * 1) an ISBN
+ * 2) a Name
+ * 3) a Price
+ * 4) a Quantity
+ * Book needs to be Serializable to be written into a file.
+ * Book needs to be Cloneable to create a true deep copy.
+ */
 public class Book implements Serializable, Cloneable {
   private static final long serialVersionUID = -4778810560316362989L;
   private Integer isbn;

@@ -4,17 +4,21 @@ import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class Serialization {
-  private static Serialization objectMapper;
+/**
+ * Common place to manage file IO using binary serialization.
+ * Handles auto closing of resources using try with resource at a common place.
+ */
+public class Serializer {
+  private static Serializer binarySerializer;
 
-  private Serialization() {
+  private Serializer() {
   }
 
-  synchronized public static Serialization getInstance() {
-    if (objectMapper == null) {
-      objectMapper = new Serialization();
+  synchronized public static Serializer getInstance() {
+    if (binarySerializer == null) {
+      binarySerializer = new Serializer();
     }
-    return objectMapper;
+    return binarySerializer;
   }
 
   public void write(String fileName, Object object) throws IOException {
