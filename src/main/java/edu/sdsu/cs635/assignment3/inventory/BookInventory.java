@@ -6,6 +6,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Basic {@link Inventory} that acts as in-memory store for {@link Book}
+ * The {@link Inventory} is just a key-value store of a books ISBN and the book.
+ * The {@link Inventory} has an option to create a snapshot of its content at any given time and restore it to the last persisted state using Memento pattern.
+ */
 public class BookInventory implements Inventory {
   private static final long serialVersionUID = -4778810560316362987L;
 
