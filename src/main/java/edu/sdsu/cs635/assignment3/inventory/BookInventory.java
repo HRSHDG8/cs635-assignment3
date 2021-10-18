@@ -9,7 +9,7 @@ import java.util.Optional;
 public class BookInventory implements Inventory {
   private static final long serialVersionUID = -4778810560316362987L;
 
-  private Map<Integer, Book> bookStore;
+  private final Map<Integer, Book> bookStore;
 
   public BookInventory() {
     this.bookStore = new HashMap<>();

@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 
 @TestMethodOrder(OrderAnnotation.class)
-public class BookInventoryTest {
+public class DecoratedInventoryTest {
   private Inventory bookInventory;
 
   @BeforeAll
