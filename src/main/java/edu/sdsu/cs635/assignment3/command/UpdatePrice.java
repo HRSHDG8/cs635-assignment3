@@ -22,11 +22,11 @@ public class UpdatePrice implements Command {
   @Override
   public void execute(BookInventory bookInventory) {
     Map<Integer, Book> bookStore = bookInventory.getBookStore();
-    if (bookStore.containsKey(book.getId())) {
-      Book inventoryBook = bookStore.get(book.getId());
+    if (bookStore.containsKey(book.getIsbn())) {
+      Book inventoryBook = bookStore.get(book.getIsbn());
       inventoryBook.setPrice(book.getPrice());
     }
-    bookStore.put(book.getId(), book);
+    bookStore.put(book.getIsbn(), book);
   }
 
   public Book getBook() {

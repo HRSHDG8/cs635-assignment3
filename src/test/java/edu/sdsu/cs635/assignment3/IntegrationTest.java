@@ -44,7 +44,7 @@ public class IntegrationTest {
     Book rickAndMorty = new Book("Rick and Morty", 29.99f, 1);
     bookInventory.add(rickAndMorty);
     bookInventory.sell(rickAndMorty);
-    assertTrue(bookInventory.findById(lordOfTheRings.getId()).isPresent());
+    assertTrue(bookInventory.findById(lordOfTheRings.getIsbn()).isPresent());
   }
 
   @Test

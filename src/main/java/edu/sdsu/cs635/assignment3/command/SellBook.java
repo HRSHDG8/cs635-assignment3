@@ -23,13 +23,13 @@ public class SellBook implements Command {
   @Override
   public void execute(BookInventory bookInventory) {
     Map<Integer, Book> bookStore = bookInventory.getBookStore();
-    if (bookStore.containsKey(book.getId())) {
-      Book bookToBeSold = bookStore.get(book.getId());
+    if (bookStore.containsKey(book.getIsbn())) {
+      Book bookToBeSold = bookStore.get(book.getIsbn());
       if (bookToBeSold.getQuantity() <= 0) {
         throw new RuntimeException("Book is not available");
       } else {
         bookToBeSold.setQuantity(bookToBeSold.getQuantity() - 1);
-        bookStore.put(bookToBeSold.getId(), bookToBeSold);
+        bookStore.put(bookToBeSold.getIsbn(), bookToBeSold);
       }
     } else {
       throw new RuntimeException("Book is not available");

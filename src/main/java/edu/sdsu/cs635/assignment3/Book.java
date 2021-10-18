@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Book implements Serializable, Cloneable {
   private static final long serialVersionUID = -4778810560316362986L;
-  private Integer id;
+  private Integer isbn;
   private String name;
   private Float price;
   private Integer quantity;
@@ -27,17 +27,17 @@ public class Book implements Serializable, Cloneable {
     this.quantity = quantity;
   }
 
-  public Book(Integer id, String name, Float price, Integer quantity) {
+  public Book(Integer isbn, String name, Float price, Integer quantity) {
     this(name, price, quantity);
-    this.id = id;
+    this.isbn = isbn;
   }
 
-  public Integer getId() {
-    return id;
+  public Integer getIsbn() {
+    return isbn;
   }
 
-  public void setId(Integer id) {
-    this.id = id;
+  public void setIsbn(Integer isbn) {
+    this.isbn = isbn;
   }
 
   public String getName() {

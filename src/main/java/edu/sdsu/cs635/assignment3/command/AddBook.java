@@ -22,16 +22,16 @@ public class AddBook implements Command {
   @Override
   public void execute(BookInventory bookInventory) {
     Map<Integer, Book> bookStore = bookInventory.getBookStore();
-    if (bookStore.containsKey(book.getId())) {
-      Book inventoryBook = bookStore.get(book.getId());
+    if (bookStore.containsKey(book.getIsbn())) {
+      Book inventoryBook = bookStore.get(book.getIsbn());
       inventoryBook.setQuantity(inventoryBook.getQuantity() + 1);
     } else {
       if (book.getQuantity() <= 0) {
         book.setQuantity(1);
       }
-      book.setId(computeIndex(bookInventory));
+      book.setIsbn(computeIndex(bookInventory));
     }
-    bookStore.put(book.getId(), book);
+    bookStore.put(book.getIsbn(), book);
   }
 
   private int computeIndex(BookInventory bookInventory) {
