@@ -1,13 +1,7 @@
 package edu.sdsu.cs635.assignment3.inventory;
 
 import edu.sdsu.cs635.assignment3.Book;
-import edu.sdsu.cs635.assignment3.InventoryState;
-import edu.sdsu.cs635.assignment3.command.AddBook;
-import edu.sdsu.cs635.assignment3.command.Command;
-import edu.sdsu.cs635.assignment3.command.SellBook;
-import edu.sdsu.cs635.assignment3.command.UpdatePrice;
-import edu.sdsu.cs635.assignment3.decorator.CommandInvoker;
-import edu.sdsu.cs635.assignment3.decorator.WithSaveToFile;
+import edu.sdsu.cs635.assignment3.command.*;
 import edu.sdsu.cs635.assignment3.serialization.Serialization;
 
 import java.io.IOException;
@@ -15,6 +9,7 @@ import java.util.Optional;
 
 public class DecoratedInventory implements Inventory {
   private static final long serialVersionUID = -4778810560316362991L;
+  public static final String INVENTORY = "inventory.ser";
   private final Inventory inventory;
   private final CommandInvoker invoker;
   private final Serialization serialization;
@@ -25,7 +20,7 @@ public class DecoratedInventory implements Inventory {
     this.invoker = new CommandInvoker(inventory);
     InventoryState inventoryState;
     try {
-      inventoryState = (InventoryState) this.serialization.read("inventory.ser");
+      inventoryState = (InventoryState) this.serialization.read(INVENTORY);
       this.restoreState(inventoryState);
     } catch (IOException | ClassNotFoundException e) {
 
@@ -63,7 +58,7 @@ public class DecoratedInventory implements Inventory {
   @Override
   public InventoryState createState() throws IOException {
     InventoryState inventoryState = inventory.createState();
-    serialization.write("inventory.ser", inventoryState);
+    serialization.write(INVENTORY, inventoryState);
     return inventoryState;
   }
 

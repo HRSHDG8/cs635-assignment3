@@ -1,7 +1,6 @@
 package edu.sdsu.cs635.assignment3.inventory;
 
 import edu.sdsu.cs635.assignment3.Book;
-import edu.sdsu.cs635.assignment3.InventoryState;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -80,7 +79,6 @@ public class BookInventory implements Inventory {
   public void restoreState(InventoryState state) {
     BookInventory inventory = (BookInventory) state.getInventory();
     Map<Integer, Book> bookStore = inventory.getBookStore();
-    this.bookStore.clear();
     bookStore.forEach((id, book) -> this.bookStore.put(id, book.clone()));
   }
 

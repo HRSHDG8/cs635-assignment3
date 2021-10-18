@@ -1,6 +1,5 @@
-package edu.sdsu.cs635.assignment3.decorator;
+package edu.sdsu.cs635.assignment3.command;
 
-import edu.sdsu.cs635.assignment3.command.Command;
 import edu.sdsu.cs635.assignment3.inventory.Inventory;
 
 import java.io.Serializable;

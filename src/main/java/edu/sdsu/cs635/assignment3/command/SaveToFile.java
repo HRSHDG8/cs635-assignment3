@@ -1,6 +1,5 @@
-package edu.sdsu.cs635.assignment3.decorator;
+package edu.sdsu.cs635.assignment3.command;
 
-import edu.sdsu.cs635.assignment3.command.Command;
 import edu.sdsu.cs635.assignment3.inventory.DecoratedInventory;
 import edu.sdsu.cs635.assignment3.inventory.Inventory;
 import edu.sdsu.cs635.assignment3.serialization.Serialization;
@@ -8,7 +7,6 @@ import edu.sdsu.cs635.assignment3.serialization.Serialization;
 import java.io.EOFException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class SaveToFile extends CommandDecorator {
@@ -26,9 +24,9 @@ public class SaveToFile extends CommandDecorator {
     try {
       command.execute(inventory);
       List<Command> commands = addToFile(command);
-      if (commands.size() > 10) {
+      if (commands.size() >= 10) {
         new DecoratedInventory(inventory).createState();
-        serialization.write(COMMAND_JSON, Collections.emptyList());
+        serialization.write(COMMAND_JSON, new ArrayList<>());
       }
     } catch (IOException | ClassNotFoundException e) {
       e.printStackTrace();

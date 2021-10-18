@@ -1,6 +1,4 @@
-package edu.sdsu.cs635.assignment3;
-
-import edu.sdsu.cs635.assignment3.inventory.Inventory;
+package edu.sdsu.cs635.assignment3.inventory;
 
 import java.io.Serializable;
 
