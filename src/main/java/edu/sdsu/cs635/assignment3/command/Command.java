@@ -2,7 +2,7 @@ package edu.sdsu.cs635.assignment3.command;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import edu.sdsu.cs635.assignment3.BookInventory;
+import edu.sdsu.cs635.assignment3.inventory.Inventory;
 
 import java.io.Serializable;
 
@@ -17,5 +17,5 @@ import java.io.Serializable;
    @JsonSubTypes.Type(value = UpdatePrice.class, name = "update")
 })
 public interface Command extends Serializable {
-  void execute(BookInventory inventory);
+  void execute(Inventory inventory);
 }

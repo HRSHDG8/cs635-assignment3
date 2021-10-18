@@ -2,9 +2,9 @@ package edu.sdsu.cs635.assignment3.decorator;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.sdsu.cs635.assignment3.BookInventory;
 import edu.sdsu.cs635.assignment3.command.Command;
 import edu.sdsu.cs635.assignment3.file.FileOperator;
+import edu.sdsu.cs635.assignment3.inventory.Inventory;
 import edu.sdsu.cs635.assignment3.serialization.Serialization;
 
 import java.io.IOException;
@@ -23,13 +23,13 @@ public class SaveToFile extends CommandDecorator {
   }
 
   @Override
-  public void execute(BookInventory inventory) {
+  public void execute(Inventory inventory) {
     //write to file
     List<Command> commands = addToFile(command);
     try {
       command.execute(inventory);
       if (commands.size() > 10) {
-        inventory.createMemento();
+//        inventory.createMemento();
       }
     } catch (Exception e) {
       e.printStackTrace();

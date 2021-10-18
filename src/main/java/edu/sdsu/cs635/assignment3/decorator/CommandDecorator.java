@@ -1,7 +1,7 @@
 package edu.sdsu.cs635.assignment3.decorator;
 
-import edu.sdsu.cs635.assignment3.BookInventory;
 import edu.sdsu.cs635.assignment3.command.Command;
+import edu.sdsu.cs635.assignment3.inventory.Inventory;
 
 public abstract class CommandDecorator implements Command {
   Command command;
@@ -11,7 +11,7 @@ public abstract class CommandDecorator implements Command {
   }
 
   @Override
-  public void execute(BookInventory inventory) {
+  public void execute(Inventory inventory) {
     command.execute(inventory);
   }
 }

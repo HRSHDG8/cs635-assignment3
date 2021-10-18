@@ -3,11 +3,9 @@ package edu.sdsu.cs635.assignment3.command;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import edu.sdsu.cs635.assignment3.Book;
-import edu.sdsu.cs635.assignment3.BookInventory;
+import edu.sdsu.cs635.assignment3.inventory.Inventory;
 import edu.sdsu.cs635.assignment3.serialization.UpdatePriceDeSerializer;
 import edu.sdsu.cs635.assignment3.serialization.UpdatePriceSerializer;
-
-import java.util.Map;
 
 @JsonSerialize(using = UpdatePriceSerializer.class)
 @JsonDeserialize(using = UpdatePriceDeSerializer.class)
@@ -20,13 +18,8 @@ public class UpdatePrice implements Command {
   }
 
   @Override
-  public void execute(BookInventory bookInventory) {
-    Map<Integer, Book> bookStore = bookInventory.getBookStore();
-    if (bookStore.containsKey(book.getIsbn())) {
-      Book inventoryBook = bookStore.get(book.getIsbn());
-      inventoryBook.setPrice(book.getPrice());
-    }
-    bookStore.put(book.getIsbn(), book);
+  public void execute(Inventory inventory) {
+    inventory.update(book);
   }
 
   public Book getBook() {

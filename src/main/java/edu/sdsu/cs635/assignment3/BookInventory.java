@@ -1,10 +1,6 @@
 package edu.sdsu.cs635.assignment3;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import edu.sdsu.cs635.assignment3.command.AddBook;
-import edu.sdsu.cs635.assignment3.command.CommandInvoker;
-import edu.sdsu.cs635.assignment3.command.SellBook;
-import edu.sdsu.cs635.assignment3.command.UpdatePrice;
 import edu.sdsu.cs635.assignment3.file.FileOperator;
 
 import java.io.Serializable;
@@ -16,12 +12,12 @@ import java.util.Optional;
 public class BookInventory {
   private Map<Integer, Book> bookStore;
   private final FileOperator fileOperator;
-  private final CommandInvoker executor;
+//  private final CommandInvoker executor;
 
   public BookInventory() {
     this.bookStore = new HashMap<>();
     this.fileOperator = new FileOperator();
-    this.executor = new CommandInvoker(this);
+//    this.executor = new CommandInvoker(this);
   }
 
   public Map<Integer, Book> getBookStore() {
@@ -30,16 +26,16 @@ public class BookInventory {
 
 
   public void add(Book book) {
-    executor.execute(new AddBook(book));
+//    executor.execute(new AddBook(book));
   }
 
 
   public void sell(Book book) {
-    executor.execute(new SellBook(book));
+//    executor.execute(new SellBook(book));
   }
 
   public void updatePrice(Book book) {
-    executor.execute(new UpdatePrice(book));
+//    executor.execute(new UpdatePrice(book));
   }
 
 

@@ -15,7 +15,7 @@ public class UpdatePriceDeSerializer extends JsonDeserializer<UpdatePrice> {
   public UpdatePrice deserialize(JsonParser jp, DeserializationContext deserializationContext) throws IOException, JacksonException {
     JsonNode node = jp.getCodec().readTree(jp);
     JsonNode bookNode = node.get("book");
-    Book book = new Book(bookNode.get("id").asInt(), bookNode.get("name").asText(), bookNode.get("price").floatValue(), bookNode.get("quantity").asInt());
+    Book book = new Book(bookNode.get("isbn").asInt(), bookNode.get("name").asText(), bookNode.get("price").floatValue(), bookNode.get("quantity").asInt());
     return new UpdatePrice(book);
   }
 }

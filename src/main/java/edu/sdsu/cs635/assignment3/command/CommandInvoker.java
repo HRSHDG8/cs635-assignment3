@@ -1,13 +1,13 @@
 package edu.sdsu.cs635.assignment3.command;
 
-import edu.sdsu.cs635.assignment3.BookInventory;
 import edu.sdsu.cs635.assignment3.decorator.SaveToFile;
+import edu.sdsu.cs635.assignment3.inventory.Inventory;
 
 public class CommandInvoker {
 
-  private final BookInventory inventory;
+  private final Inventory inventory;
 
-  public CommandInvoker(BookInventory inventory) {
+  public CommandInvoker(Inventory inventory) {
     this.inventory = inventory;
   }
 
