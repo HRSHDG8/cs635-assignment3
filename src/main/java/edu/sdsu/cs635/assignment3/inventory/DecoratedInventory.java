@@ -5,34 +5,35 @@ import edu.sdsu.cs635.assignment3.command.AddBook;
 import edu.sdsu.cs635.assignment3.command.Command;
 import edu.sdsu.cs635.assignment3.command.SellBook;
 import edu.sdsu.cs635.assignment3.command.UpdatePrice;
+import edu.sdsu.cs635.assignment3.decorator.CommandInvoker;
 import edu.sdsu.cs635.assignment3.decorator.WithSaveToFile;
 
 import java.util.Optional;
 
 public class DecoratedInventory implements Inventory {
   private Inventory inventory;
-  private final WithSaveToFile invoker;
+  private final CommandInvoker invoker;
 
   public DecoratedInventory(Inventory inventory) {
     this.inventory = inventory;
-    this.invoker = new WithSaveToFile(this);
+    this.invoker = new CommandInvoker(this);
   }
 
   @Override
   public void add(Book book) {
-    Command add = new AddBook(book);
+    Command add = new WithSaveToFile(new AddBook(book));
     invoker.execute(add);
   }
 
   @Override
   public void sell(Book book) {
-    Command sell = new SellBook(book);
+    Command sell = new WithSaveToFile(new SellBook(book));
     invoker.execute(sell);
   }
 
   @Override
   public void update(Book book) {
-    Command update = new UpdatePrice(book);
+    Command update = new WithSaveToFile(new UpdatePrice(book));
     invoker.execute(update);
   }
 

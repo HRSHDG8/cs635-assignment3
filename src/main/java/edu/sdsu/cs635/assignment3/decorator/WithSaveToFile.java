@@ -3,15 +3,16 @@ package edu.sdsu.cs635.assignment3.decorator;
 import edu.sdsu.cs635.assignment3.command.Command;
 import edu.sdsu.cs635.assignment3.inventory.Inventory;
 
-public class WithSaveToFile {
+public class WithSaveToFile implements Command {
 
-  private final Inventory inventory;
+  private final Command command;
 
-  public WithSaveToFile(Inventory inventory) {
-    this.inventory = inventory;
+  public WithSaveToFile(Command command) {
+    this.command = command;
   }
 
-  public void execute(Command command) {
+  @Override
+  public void execute(Inventory inventory) {
     Command decoratedCommand = new SaveToFile(command);
     decoratedCommand.execute(inventory);
   }
