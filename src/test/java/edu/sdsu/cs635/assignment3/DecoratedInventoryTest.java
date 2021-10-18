@@ -47,6 +47,7 @@ public class DecoratedInventoryTest {
     bookInventory.sell(immortals);
     bookInventory.add(path);
     bookInventory.add(path);
+    //10 commands would create a memento
     bookInventory.sell(path);
     bookInventory.sell(path);
     path.setPrice(19.99f);

@@ -28,7 +28,7 @@ public class DecoratedInventory implements Inventory {
       List<Command> commands = (List<Command>) this.serialization.read(COMMANDS);
       commands.forEach(command -> command.execute(inventory));
     } catch (IOException | ClassNotFoundException e) {
-
+      System.err.println(e.getMessage());
     }
   }
 

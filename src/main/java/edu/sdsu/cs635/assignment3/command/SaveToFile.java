@@ -29,7 +29,7 @@ public class SaveToFile extends CommandDecorator {
         new DecoratedInventory(inventory).createState();
       }
     } catch (IOException | ClassNotFoundException e) {
-      e.printStackTrace();
+      System.err.println(e.getMessage());
     }
   }
 
