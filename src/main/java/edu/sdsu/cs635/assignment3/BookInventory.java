@@ -1,22 +1,18 @@
 package edu.sdsu.cs635.assignment3;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import edu.sdsu.cs635.assignment3.file.FileOperator;
-
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 public class BookInventory {
   private Map<Integer, Book> bookStore;
-  private final FileOperator fileOperator;
+//  private final FileOperator fileOperator;
 //  private final CommandInvoker executor;
 
   public BookInventory() {
     this.bookStore = new HashMap<>();
-    this.fileOperator = new FileOperator();
+//    this.fileOperator = new FileOperator();
 //    this.executor = new CommandInvoker(this);
   }
 
@@ -54,11 +50,11 @@ public class BookInventory {
 
   public InventoryMemento createMemento() {
     InventoryMemento inventoryMemento = new InventoryMemento(bookStore);
-    boolean didClear = fileOperator.clearFile("command.json", new TypeReference<List<Object>>() {
-    });
-    if (didClear) {
-      fileOperator.writeToFile("inventory.json", inventoryMemento);
-    }
+//    boolean didClear = fileOperator.clearFile("command.ser", new TypeReference<List<Object>>() {
+//    });
+//    if (didClear) {
+//      fileOperator.writeToFile("inventory.ser", inventoryMemento);
+//    }
     return inventoryMemento;
   }
 

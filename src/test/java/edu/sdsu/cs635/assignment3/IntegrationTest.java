@@ -1,10 +1,7 @@
 package edu.sdsu.cs635.assignment3;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.sdsu.cs635.assignment3.file.FileOperator;
 import edu.sdsu.cs635.assignment3.inventory.BookInventory;
 import edu.sdsu.cs635.assignment3.inventory.Inventory;
-import edu.sdsu.cs635.assignment3.serialization.Serialization;
 import org.junit.jupiter.api.*;
 
 import java.io.IOException;
@@ -14,8 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class IntegrationTest {
   private Inventory bookInventory;
-  private final FileOperator fileOperator = new FileOperator();
-  private final ObjectMapper objectMapper = Serialization.getInstance();
 
 
   @BeforeEach
@@ -47,8 +42,8 @@ public class IntegrationTest {
   @Test
   @Order(2)
   public void restore() throws IOException {
-//    InventoryMemento inventoryMemento = objectMapper.readValue(fileOperator.readFile("inventory.json"), InventoryMemento.class);
-//    List<Command> commands = objectMapper.readValue(fileOperator.readFile("command.json"), new TypeReference<List<Command>>() {
+//    InventoryMemento inventoryMemento = objectMapper.readValue(fileOperator.readFile("inventory.ser"), InventoryMemento.class);
+//    List<Command> commands = objectMapper.readValue(fileOperator.readFile("command.ser"), new TypeReference<List<Command>>() {
 //    });
 //    bookInventory.restore(inventoryMemento);
 //    commands.forEach(command -> command.execute(bookInventory));
