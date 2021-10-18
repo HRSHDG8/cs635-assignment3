@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class DecoratedInventory implements Inventory {
   private Inventory inventory;
-  private WithSaveToFile invoker;
+  private final WithSaveToFile invoker;
 
   public DecoratedInventory(Inventory inventory) {
     this.inventory = inventory;
