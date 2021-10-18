@@ -1,13 +1,13 @@
-package edu.sdsu.cs635.assignment3.command;
+package edu.sdsu.cs635.assignment3.decorator;
 
-import edu.sdsu.cs635.assignment3.decorator.SaveToFile;
+import edu.sdsu.cs635.assignment3.command.Command;
 import edu.sdsu.cs635.assignment3.inventory.Inventory;
 
-public class CommandInvoker {
+public class WithSaveToFile {
 
   private final Inventory inventory;
 
-  public CommandInvoker(Inventory inventory) {
+  public WithSaveToFile(Inventory inventory) {
     this.inventory = inventory;
   }
 
@@ -15,6 +15,5 @@ public class CommandInvoker {
     Command decoratedCommand = new SaveToFile(command);
     decoratedCommand.execute(inventory);
   }
-
 
 }
