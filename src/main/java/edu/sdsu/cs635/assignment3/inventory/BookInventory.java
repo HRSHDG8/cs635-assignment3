@@ -1,6 +1,7 @@
 package edu.sdsu.cs635.assignment3.inventory;
 
 import edu.sdsu.cs635.assignment3.Book;
+import edu.sdsu.cs635.assignment3.InventoryState;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,6 +9,7 @@ import java.util.Optional;
 
 public class BookInventory implements Inventory {
   private static final long serialVersionUID = -4778810560316362987L;
+
   private Map<Integer, Book> bookStore;
 
   public BookInventory() {
@@ -68,4 +70,22 @@ public class BookInventory implements Inventory {
        .filter(book -> book.getName().equals(name))
        .findFirst();
   }
+
+  @Override
+  public InventoryState createState() {
+    return new InventoryState(this);
+  }
+
+  @Override
+  public void restoreState(InventoryState state) {
+    BookInventory inventory = (BookInventory) state.getInventory();
+    Map<Integer, Book> bookStore = inventory.getBookStore();
+    this.bookStore.clear();
+    bookStore.forEach((id, book) -> this.bookStore.put(id, book.clone()));
+  }
+
+  public Map<Integer, Book> getBookStore() {
+    return bookStore;
+  }
+
 }

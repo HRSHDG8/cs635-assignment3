@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class SerializationTest {
   private Serialization serialization;
 
@@ -21,12 +23,13 @@ class SerializationTest {
   }
 
   @Test
+  @SuppressWarnings("unchecked")
   public void writeToFile() throws IOException, ClassNotFoundException {
     Command add = new AddBook(new Book(1, "Harry", 10f, 1));
     Command sell = new SellBook(new Book(1, "Harry", 10f, 1));
     serialization.write("test.ser", new ArrayList<>(Arrays.asList(add, sell)));
     List<Command> commands = (List<Command>) serialization.read("test.ser");
-    System.out.println(commands);
+    assertEquals(2, commands.size());
   }
 
 }

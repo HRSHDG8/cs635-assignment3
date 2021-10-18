@@ -3,50 +3,13 @@ package edu.sdsu.cs635.assignment3;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 public class BookInventory {
   private Map<Integer, Book> bookStore;
-//  private final FileOperator fileOperator;
-//  private final CommandInvoker executor;
 
   public BookInventory() {
     this.bookStore = new HashMap<>();
-//    this.fileOperator = new FileOperator();
-//    this.executor = new CommandInvoker(this);
   }
-
-  public Map<Integer, Book> getBookStore() {
-    return bookStore;
-  }
-
-
-  public void add(Book book) {
-//    executor.execute(new AddBook(book));
-  }
-
-
-  public void sell(Book book) {
-//    executor.execute(new SellBook(book));
-  }
-
-  public void updatePrice(Book book) {
-//    executor.execute(new UpdatePrice(book));
-  }
-
-
-  public Optional<Book> findById(Integer id) {
-    return Optional.ofNullable(bookStore.get(id));
-  }
-
-
-  public Optional<Book> findByName(String name) {
-    return bookStore.values()
-       .stream()
-       .filter(book -> book.getName().equals(name))
-       .findFirst();
-  }
-
 
   public InventoryMemento createMemento() {
     InventoryMemento inventoryMemento = new InventoryMemento(bookStore);

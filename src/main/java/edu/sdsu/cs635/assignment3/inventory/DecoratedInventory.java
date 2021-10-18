@@ -1,6 +1,7 @@
 package edu.sdsu.cs635.assignment3.inventory;
 
 import edu.sdsu.cs635.assignment3.Book;
+import edu.sdsu.cs635.assignment3.InventoryState;
 import edu.sdsu.cs635.assignment3.command.AddBook;
 import edu.sdsu.cs635.assignment3.command.Command;
 import edu.sdsu.cs635.assignment3.command.SellBook;
@@ -45,5 +46,15 @@ public class DecoratedInventory implements Inventory {
   @Override
   public Optional<Book> findByName(String name) {
     return inventory.findByName(name);
+  }
+
+  @Override
+  public InventoryState createState() {
+    return inventory.createState();
+  }
+
+  @Override
+  public void restoreState(InventoryState state) {
+    inventory.restoreState(state);
   }
 }
