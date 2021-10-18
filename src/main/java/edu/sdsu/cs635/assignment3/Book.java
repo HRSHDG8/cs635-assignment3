@@ -11,14 +11,7 @@ public class Book implements Serializable, Cloneable {
 
   @Override
   public Book clone() {
-    try {
-      return (Book) super.clone();
-    } catch (CloneNotSupportedException e) {
-      throw new AssertionError();
-    }
-  }
-
-  public Book() {
+    return new Book(isbn, name, price, quantity);
   }
 
   public Book(String name, Float price, Integer quantity) {

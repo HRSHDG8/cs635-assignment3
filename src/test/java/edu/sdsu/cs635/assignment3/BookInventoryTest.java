@@ -9,7 +9,10 @@ import org.junit.jupiter.api.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 
 @TestMethodOrder(OrderAnnotation.class)
@@ -17,7 +20,7 @@ public class BookInventoryTest {
   private Inventory bookInventory;
 
   @BeforeAll
-  static void before() throws IOException {
+  static void clearInventoryAndCommands() throws IOException {
     Serialization serialization = Serialization.getInstance();
     serialization.write("inventory.ser", new InventoryState(new BookInventory()));
     serialization.write("command.ser", new ArrayList<>());
@@ -52,7 +55,24 @@ public class BookInventoryTest {
 
   @Test
   @Order(2)
-  public void restoreFromFile() {
+  public void findHarryPotterByNameAndItsQuantityMustBe0() {
+    Optional<Book> bookOpt = bookInventory.findByName("Harry Potter");
+    assertTrue(bookOpt.isPresent());
+    Book book = bookOpt.get();
+    assertEquals("Harry Potter", book.getName());
+  }
 
+  @Test
+  @Order(3)
+  public void changingABookNameAlongWithPriceDoesntChangeTheBookName() {
+    Book book = new Book("Alice in wonder land", 99.99f, 1);
+    bookInventory.add(book);
+    book.setName("A I W L");
+    book.setPrice(49.99f);
+    bookInventory.update(book);
+    Optional<Book> aliceOpt = bookInventory.findById(4);
+    assertTrue(aliceOpt.isPresent());
+    Book alice = aliceOpt.get();
+    assertEquals("Alice in wonder land", alice.getName());
   }
 }

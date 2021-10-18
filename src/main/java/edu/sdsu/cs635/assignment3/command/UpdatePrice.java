@@ -15,8 +15,4 @@ public class UpdatePrice implements Command {
   public void execute(Inventory inventory) {
     inventory.update(book);
   }
-
-  public Book getBook() {
-    return book;
-  }
 }

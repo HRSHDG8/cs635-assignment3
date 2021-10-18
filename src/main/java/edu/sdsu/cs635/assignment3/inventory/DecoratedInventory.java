@@ -5,23 +5,28 @@ import edu.sdsu.cs635.assignment3.command.*;
 import edu.sdsu.cs635.assignment3.serialization.Serialization;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 public class DecoratedInventory implements Inventory {
   private static final long serialVersionUID = -4778810560316362991L;
   public static final String INVENTORY = "inventory.ser";
+  public static final String COMMANDS = "command.ser";
   private final Inventory inventory;
   private final CommandInvoker invoker;
   private final Serialization serialization;
 
+  @SuppressWarnings("unchecked")
   public DecoratedInventory(Inventory inventory) {
     this.inventory = inventory;
     this.serialization = Serialization.getInstance();
     this.invoker = new CommandInvoker(inventory);
-    InventoryState inventoryState;
+
     try {
-      inventoryState = (InventoryState) this.serialization.read(INVENTORY);
+      InventoryState inventoryState = (InventoryState) this.serialization.read(INVENTORY);
       this.restoreState(inventoryState);
+      List<Command> commands = (List<Command>) this.serialization.read(COMMANDS);
+      commands.forEach(command -> command.execute(inventory));
     } catch (IOException | ClassNotFoundException e) {
 
     }

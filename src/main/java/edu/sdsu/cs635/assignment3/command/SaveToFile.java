@@ -25,8 +25,8 @@ public class SaveToFile extends CommandDecorator {
       command.execute(inventory);
       List<Command> commands = addToFile(command);
       if (commands.size() >= 10) {
-        new DecoratedInventory(inventory).createState();
         serialization.write(COMMAND_JSON, new ArrayList<>());
+        new DecoratedInventory(inventory).createState();
       }
     } catch (IOException | ClassNotFoundException e) {
       e.printStackTrace();

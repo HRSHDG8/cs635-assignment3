@@ -16,8 +16,4 @@ public class SellBook implements Command {
   public void execute(Inventory inventory) {
     inventory.sell(book);
   }
-
-  public Book getBook() {
-    return book;
-  }
 }

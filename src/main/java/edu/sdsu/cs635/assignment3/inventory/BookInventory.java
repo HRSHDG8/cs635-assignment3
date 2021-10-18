@@ -17,16 +17,19 @@ public class BookInventory implements Inventory {
 
   @Override
   public void add(Book book) {
+    Book inventoryBook = book.clone();
     if (bookStore.containsKey(book.getIsbn())) {
-      Book inventoryBook = bookStore.get(book.getIsbn());
+      inventoryBook = bookStore.get(book.getIsbn()).clone();
       inventoryBook.setQuantity(inventoryBook.getQuantity() + 1);
     } else {
       if (book.getQuantity() <= 0) {
-        book.setQuantity(1);
+        inventoryBook.setQuantity(1);
       }
-      book.setIsbn(computeIndex());
+      int index = computeIndex();
+      inventoryBook.setIsbn(index);
+      book.setIsbn(index);
     }
-    bookStore.put(book.getIsbn(), book);
+    bookStore.put(book.getIsbn(), inventoryBook);
   }
 
   private int computeIndex() {
@@ -50,11 +53,13 @@ public class BookInventory implements Inventory {
 
   @Override
   public void update(Book book) {
+    Book inventoryBook = book.clone();
     if (bookStore.containsKey(book.getIsbn())) {
-      Book inventoryBook = bookStore.get(book.getIsbn());
+      inventoryBook = bookStore.get(book.getIsbn()).clone();
       inventoryBook.setPrice(book.getPrice());
+      inventoryBook.setQuantity(book.getQuantity());
     }
-    bookStore.put(book.getIsbn(), book);
+    bookStore.put(book.getIsbn(), inventoryBook);
   }
 
   @Override

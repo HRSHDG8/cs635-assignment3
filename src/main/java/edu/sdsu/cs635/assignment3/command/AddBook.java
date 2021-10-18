@@ -15,8 +15,4 @@ public class AddBook implements Command {
   public void execute(Inventory inventory) {
     inventory.add(book);
   }
-
-  public Book getBook() {
-    return book;
-  }
 }
