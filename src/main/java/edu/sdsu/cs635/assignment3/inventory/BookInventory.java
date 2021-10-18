@@ -20,6 +20,9 @@ public class BookInventory implements Inventory {
     this.bookStore = new HashMap<>();
   }
 
+  /**
+   * Add a new book or copies of the same book.
+   */
   @Override
   public void add(Book book) {
     Book inventoryBook = book.clone();
