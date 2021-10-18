@@ -5,6 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class Serialization {
   private static ObjectMapper objectMapper;
 
+  private Serialization() {
+  }
+
   synchronized public static ObjectMapper getInstance() {
     if (objectMapper == null) {
       objectMapper = new ObjectMapper();
