@@ -41,7 +41,10 @@ public class BookInventory implements Inventory {
   }
 
   private int computeIndex() {
-    return bookStore.keySet().stream().max(Integer::compareTo).orElse(0) + 1;
+    return bookStore.keySet()
+       .stream()
+       .max(Integer::compareTo)
+       .orElse(0) + 1;
   }
 
   @Override
