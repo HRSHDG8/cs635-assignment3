@@ -39,11 +39,11 @@ public class DecoratedInventory implements Inventory {
 
   @Override
   public InventoryState createState() throws IOException {
-    return null;
+    return inventory.createState();
   }
 
   @Override
   public void restoreState(InventoryState state) {
-
+    inventory.restoreState(state);
   }
 }
