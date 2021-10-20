@@ -1,6 +1,6 @@
 package edu.sdsu.cs635.assignment3.decorator;
 
-import edu.sdsu.cs635.assignment3.command.CommandDecorator;
+import edu.sdsu.cs635.assignment3.command.BaseCommand;
 import edu.sdsu.cs635.assignment3.inventory.BookInventory;
 import edu.sdsu.cs635.assignment3.inventory.Inventory;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,7 @@ public class SimpleDecoratorTest {
   @Test
   public void simpleDecorator() {
     AtomicInteger atomicInteger = new AtomicInteger(-1);
-    CommandDecorator simpleCommand = new CommandDecorator(inventory -> atomicInteger.set(0)) {
+    BaseCommand simpleCommand = new BaseCommand(inventory -> atomicInteger.set(0)) {
       @Override
       public void execute(Inventory inventory) {
         super.execute(inventory);

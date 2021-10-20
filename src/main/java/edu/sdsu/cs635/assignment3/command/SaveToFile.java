@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SaveToFile extends CommandDecorator {
+public class SaveToFile extends BaseCommand {
   private static final String COMMANDS = "command.ser";
   private static final int MAX_COMMAND_SIZE = 10;
   private final Serializer serializer;

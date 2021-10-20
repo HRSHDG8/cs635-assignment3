@@ -5,10 +5,10 @@ import edu.sdsu.cs635.assignment3.inventory.Inventory;
 /**
  * Base Decorator for a {@link Command}
  */
-public abstract class CommandDecorator implements Command {
+public abstract class BaseCommand implements Command {
   Command command;
 
-  public CommandDecorator(Command command) {
+  public BaseCommand(Command command) {
     this.command = command;
   }
 
