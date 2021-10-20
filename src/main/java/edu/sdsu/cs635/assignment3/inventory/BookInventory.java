@@ -11,7 +11,7 @@ import java.util.Optional;
  * The {@link Inventory} is just a key-value store of a books ISBN and the book.
  * The {@link Inventory} has an option to create a snapshot of its content at any given time and restore it to the last persisted state using Memento pattern.
  */
-public class BookInventory implements Inventory {
+public class BookInventory implements Inventory, Cloneable {
   private static final long serialVersionUID = -4778810560316362987L;
 
   private final Map<Integer, Book> bookStore;
@@ -88,7 +88,7 @@ public class BookInventory implements Inventory {
 
   @Override
   public InventoryState createState() {
-    return new InventoryState(this);
+    return new InventoryState(this.clone());
   }
 
   @Override
@@ -102,4 +102,11 @@ public class BookInventory implements Inventory {
     return bookStore;
   }
 
+  @Override
+  public BookInventory clone() {
+    BookInventory clone = new BookInventory();
+    clone.bookStore.clear();
+    bookStore.forEach((id, book) -> clone.bookStore.put(id, book.clone()));
+    return clone;
+  }
 }

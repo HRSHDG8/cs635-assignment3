@@ -71,7 +71,7 @@ public class PersistenceInventoryTest {
     book.setName("A I W L");
     book.setPrice(49.99f);
     bookInventory.update(book);
-    Optional<Book> aliceOpt = bookInventory.findById(4);
+    Optional<Book> aliceOpt = bookInventory.findById(book.getIsbn());
     assertTrue(aliceOpt.isPresent());
     Book alice = aliceOpt.get();
     assertEquals("Alice in wonder land", alice.getName());

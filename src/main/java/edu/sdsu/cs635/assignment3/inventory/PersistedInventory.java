@@ -65,9 +65,13 @@ public class PersistedInventory extends DecoratedInventory {
   }
 
   @Override
-  public InventoryState createState() throws IOException {
+  public InventoryState createState() {
     InventoryState inventoryState = inventory.createState();
-    serializer.write(INVENTORY, inventoryState);
+    try {
+      serializer.write(INVENTORY, inventoryState);
+    } catch (IOException e) {
+      System.err.println(e.getMessage());
+    }
     return inventoryState;
   }
 

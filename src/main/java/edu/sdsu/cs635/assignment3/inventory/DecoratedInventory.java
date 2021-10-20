@@ -2,10 +2,9 @@ package edu.sdsu.cs635.assignment3.inventory;
 
 import edu.sdsu.cs635.assignment3.Book;
 
-import java.io.IOException;
 import java.util.Optional;
 
-public class DecoratedInventory implements Inventory {
+public abstract class DecoratedInventory implements Inventory {
   protected Inventory inventory;
 
   public DecoratedInventory(Inventory inventory) {
@@ -38,7 +37,7 @@ public class DecoratedInventory implements Inventory {
   }
 
   @Override
-  public InventoryState createState() throws IOException {
+  public InventoryState createState() {
     return inventory.createState();
   }
 
