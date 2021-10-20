@@ -26,6 +26,7 @@ public class PersistedInventory extends DecoratedInventory {
     this.serializer = Serializer.getInstance();
     this.invoker = new CommandInvoker(inventory);
     // reload inventory from its last saved state
+    // read any pending commands from last saved state and execute it on the inventory
     try {
       InventoryState inventoryState = (InventoryState) this.serializer.read(INVENTORY);
       this.restoreState(inventoryState);
