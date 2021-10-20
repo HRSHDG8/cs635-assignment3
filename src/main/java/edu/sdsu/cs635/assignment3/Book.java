@@ -19,11 +19,6 @@ public class Book implements Serializable, Cloneable {
   private Float price;
   private Integer quantity;
 
-  @Override
-  public Book clone() {
-    return new Book(isbn, name, price, quantity);
-  }
-
   public Book(String name, Float price, Integer quantity) {
     this.name = name;
     this.price = price;
@@ -65,5 +60,10 @@ public class Book implements Serializable, Cloneable {
 
   public void setQuantity(Integer quantity) {
     this.quantity = quantity;
+  }
+
+  @Override
+  public Book clone() {
+    return new Book(isbn, name, price, quantity);
   }
 }
