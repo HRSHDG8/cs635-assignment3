@@ -67,6 +67,7 @@ public class PersistenceInventoryTest {
 
   @Test
   @Order(3)
+  @DisplayName("Persisted Inventory must not change the bases behavior of the Inventory, changes should still be immutable!!")
   public void changingABookNameAlongWithPriceDoesntChangeTheBookName() {
     Book book = new Book("Alice in wonder land", 99.99f, 1);
     bookInventory.add(book);
