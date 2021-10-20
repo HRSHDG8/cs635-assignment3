@@ -24,7 +24,7 @@ class SerializerTest {
 
   @Test
   @SuppressWarnings("unchecked")
-  public void writeToFile() throws IOException, ClassNotFoundException {
+  public void writeToAndReadFromFile() throws IOException, ClassNotFoundException {
     Command add = new AddBook(new Book(1, "Harry", 10f, 1));
     Command sell = new SellBook(new Book(1, "Harry", 10f, 1));
     serializer.write("test.ser", new ArrayList<>(Arrays.asList(add, sell)));
