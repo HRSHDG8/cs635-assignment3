@@ -33,7 +33,8 @@ public class PersistenceInventoryTest {
 
   @Test
   @Order(1)
-  public void testStart() {
+  @DisplayName("Initialize the inventory with some books")
+  public void initialize() {
     Book harryPotter = new Book("Harry Potter", 9.99f, 1);
     Book immortals = new Book("Immortals", 99.99f, 1);
     Book path = new Book("Frail Path", 9.99f, 1);
@@ -56,7 +57,8 @@ public class PersistenceInventoryTest {
 
   @Test
   @Order(2)
-  public void findHarryPotterByNameAndItsQuantityMustBe0() {
+  @DisplayName("A fresh creation of PersistedInventory must have all contents from the previous run")
+  public void restartAfterProgramCrash() {
     Optional<Book> bookOpt = bookInventory.findByName("Harry Potter");
     assertTrue(bookOpt.isPresent());
     Book book = bookOpt.get();
