@@ -59,6 +59,7 @@ public class PersistenceInventoryTest {
   @Order(2)
   @DisplayName("A fresh creation of PersistedInventory must have all contents from the previous run")
   public void restartAfterProgramCrash() {
+    bookInventory = new PersistedInventory(new BookInventory());
     Optional<Book> bookOpt = bookInventory.findByName("Harry Potter");
     assertTrue(bookOpt.isPresent());
     Book book = bookOpt.get();
