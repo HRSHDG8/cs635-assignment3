@@ -1,9 +1,9 @@
 package edu.sdsu.cs635.assignment3;
 
 import edu.sdsu.cs635.assignment3.inventory.BookInventory;
-import edu.sdsu.cs635.assignment3.inventory.DecoratedInventory;
 import edu.sdsu.cs635.assignment3.inventory.Inventory;
 import edu.sdsu.cs635.assignment3.inventory.InventoryState;
+import edu.sdsu.cs635.assignment3.inventory.PersistedInventory;
 import edu.sdsu.cs635.assignment3.serialization.Serializer;
 import org.junit.jupiter.api.*;
 
@@ -28,7 +28,7 @@ public class DecoratedInventoryTest {
 
   @BeforeEach
   public void init() {
-    bookInventory = new DecoratedInventory(new BookInventory());
+    bookInventory = new PersistedInventory(new BookInventory());
   }
 
   @Test

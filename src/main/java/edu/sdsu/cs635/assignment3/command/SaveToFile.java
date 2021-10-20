@@ -1,7 +1,7 @@
 package edu.sdsu.cs635.assignment3.command;
 
-import edu.sdsu.cs635.assignment3.inventory.DecoratedInventory;
 import edu.sdsu.cs635.assignment3.inventory.Inventory;
+import edu.sdsu.cs635.assignment3.inventory.PersistedInventory;
 import edu.sdsu.cs635.assignment3.serialization.Serializer;
 
 import java.io.EOFException;
@@ -28,7 +28,7 @@ public class SaveToFile extends CommandDecorator {
       // Clear the command file once the inventory is persisted
       // if an error occurs in persisting the inventory the command file will not be cleared
       if (commands.size() >= MAX_COMMAND_SIZE) {
-        new DecoratedInventory(inventory).createState();
+        new PersistedInventory(inventory).createState();
         serializer.write(COMMANDS, new ArrayList<>());
       }
     } catch (IOException | ClassNotFoundException e) {
