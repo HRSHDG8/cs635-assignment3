@@ -5,6 +5,7 @@ import edu.sdsu.cs635.assignment3.command.AddBook;
 import edu.sdsu.cs635.assignment3.command.Command;
 import edu.sdsu.cs635.assignment3.command.SellBook;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -26,6 +27,7 @@ class SerializerTest {
   }
 
   @Test
+  @DisplayName("Method that checks our serialization logic by writing and reading a list of commands from a file (test.ser)")
   @SuppressWarnings("unchecked")
   public void writeToAndReadFromFile() throws IOException, ClassNotFoundException {
     Command add = new AddBook(new Book(1, "Harry", 10f, 1));

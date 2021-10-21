@@ -22,6 +22,7 @@ public class DecoratedInventoryTest {
   }
 
   @Test
+  @DisplayName("Creates and inventory memento and checks if its correctly restored to its last saved state")
   public void restoringAnInventoryToItsLastStateMustRestoreTheContentAndValuesOfTheContents() {
     Book path = new Book("Frail Path", 9.99f, 1);
     bookInventory.add(path);
@@ -34,6 +35,7 @@ public class DecoratedInventoryTest {
     bookInventory.update(path);
     //restore to the last saved state
     bookInventory.restoreState(inventoryState);
+    //the price of the book should be as when memento was created
     assertEquals(9.99f, bookInventory.findById(path.getIsbn()).get().getPrice());
   }
 
