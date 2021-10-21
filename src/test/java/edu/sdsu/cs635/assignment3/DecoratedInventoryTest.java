@@ -36,7 +36,9 @@ public class DecoratedInventoryTest {
     //restore to the last saved state
     bookInventory.restoreState(inventoryState);
     //the price of the book should be as when memento was created
-    assertEquals(9.99f, bookInventory.findById(path.getIsbn()).get().getPrice());
+    Optional<Book> pathFromInventory = bookInventory.findById(path.getIsbn());
+    assertTrue(pathFromInventory.isPresent());
+    assertEquals(9.99f, pathFromInventory.get().getPrice());
   }
 
   @Test

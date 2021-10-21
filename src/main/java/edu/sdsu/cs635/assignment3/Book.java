@@ -64,6 +64,16 @@ public class Book implements Serializable, Cloneable {
 
   @Override
   public Book clone() {
-    return new Book(isbn, name, price, quantity);
+    Book clonedBook;
+    try {
+      clonedBook = (Book) super.clone();
+      clonedBook.setIsbn(isbn);
+      clonedBook.setName(name);
+      clonedBook.setPrice(price);
+      clonedBook.setQuantity(quantity);
+    } catch (CloneNotSupportedException e) {
+      clonedBook = new Book(isbn, name, price, quantity);
+    }
+    return clonedBook;
   }
 }
