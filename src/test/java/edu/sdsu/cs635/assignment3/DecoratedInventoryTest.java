@@ -32,6 +32,7 @@ public class DecoratedInventoryTest {
     bookInventory.sell(path);
     path.setPrice(19.99f);
     bookInventory.update(path);
+    //restore to the last saved state
     bookInventory.restoreState(inventoryState);
     assertEquals(9.99f, bookInventory.findById(path.getIsbn()).get().getPrice());
   }
