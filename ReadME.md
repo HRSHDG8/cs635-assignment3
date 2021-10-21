@@ -7,7 +7,7 @@ them being Single Responsibility. Now your inventory is not just acting as an in
 orchestrator. Also, the changes are not easy to add on without interfering with the existing logic. (You essentially
 change the behavior of the class)
 
-If you choose to use a decorator, it ensures any new logic (creating,executing, and saving commands) are handled
+If you choose to use a decorator, it ensures any new logic (creating,executing, and saving commands) is handled
 separately and that inventory can still function independently, if you need inventory to be persisted all you need is a
 decorator wrapped around your inventory. The decorator seamlessly handles the responsibility of persisting commands and
 inventory to a file, while the core inventory can handle the responsibility of handling the inventory
