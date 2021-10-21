@@ -20,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 class SerializerTest {
   private Serializer serializer;
+  private static final String TEST_FILE = "test.ser";
 
   @BeforeEach
   void setUp() {
@@ -32,8 +33,8 @@ class SerializerTest {
   public void writeToAndReadFromFile() throws IOException, ClassNotFoundException {
     Command add = new AddBook(new Book(1, "Harry", 10f, 1));
     Command sell = new SellBook(new Book(1, "Harry", 10f, 1));
-    serializer.write("test.ser", new ArrayList<>(Arrays.asList(add, sell)));
-    List<Command> commands = (List<Command>) serializer.read("test.ser");
+    serializer.write(TEST_FILE, new ArrayList<>(Arrays.asList(add, sell)));
+    List<Command> commands = (List<Command>) serializer.read(TEST_FILE);
     assertEquals(2, commands.size());
   }
 
