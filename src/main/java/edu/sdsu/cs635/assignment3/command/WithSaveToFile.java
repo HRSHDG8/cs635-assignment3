@@ -12,6 +12,7 @@ import java.util.List;
 public class WithSaveToFile extends BaseCommand {
   private static final String COMMANDS = "command.ser";
   private static final int MAX_COMMAND_SIZE = 10;
+  private static final long serialVersionUID = -6080531703022912902L;
   private final Serializer serializer;
 
   public WithSaveToFile(Command command) {

@@ -13,7 +13,7 @@ import java.io.Serializable;
  * Book needs to be Cloneable to create a true deep copy.
  */
 public class Book implements Serializable, Cloneable {
-  private static final long serialVersionUID = -4778810560316362989L;
+  private static final long serialVersionUID = 8645556949803328149L;
   private Integer isbn;
   private String name;
   private Float price;

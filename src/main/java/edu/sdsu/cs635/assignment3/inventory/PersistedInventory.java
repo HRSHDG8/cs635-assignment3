@@ -16,7 +16,7 @@ import java.util.Optional;
 public class PersistedInventory extends DecoratedInventory {
   public static final String INVENTORY = "inventory.ser";
   public static final String COMMANDS = "command.ser";
-  private static final long serialVersionUID = -4778810560316362991L;
+  private static final long serialVersionUID = 7180951135620909160L;
   private final CommandInvoker invoker;
   private final Serializer serializer;
 

@@ -5,6 +5,7 @@ import edu.sdsu.cs635.assignment3.Book;
 import java.util.Optional;
 
 public abstract class DecoratedInventory implements Inventory {
+  private static final long serialVersionUID = 4581818108336464405L;
   protected Inventory inventory;
 
   public DecoratedInventory(Inventory inventory) {

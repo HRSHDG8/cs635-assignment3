@@ -12,8 +12,7 @@ import java.util.Optional;
  * The {@link Inventory} has an option to create a snapshot of its content at any given time and restore it to the last persisted state using Memento pattern.
  */
 public class BookInventory implements Inventory, Cloneable {
-  private static final long serialVersionUID = -4778810560316362987L;
-
+  private static final long serialVersionUID = 6891873527834431075L;
   private final Map<Integer, Book> bookStore;
 
   public BookInventory() {
