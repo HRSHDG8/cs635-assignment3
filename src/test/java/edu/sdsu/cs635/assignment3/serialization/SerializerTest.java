@@ -14,6 +14,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Test suite to check the general logic to read and write objects from and to a file
+ */
 class SerializerTest {
   private Serializer serializer;
 
