@@ -72,6 +72,7 @@ public class PersistenceInventoryTest {
   public void changingABookNameAlongWithPriceDoesntChangeTheBookName() {
     Book book = new Book("Alice in wonder land", 99.99f, 1);
     bookInventory.add(book);
+    // changes to book after it has been added to inventory should not alter the book in the inventory
     book.setName("A I W L");
     book.setPrice(49.99f);
     bookInventory.update(book);
