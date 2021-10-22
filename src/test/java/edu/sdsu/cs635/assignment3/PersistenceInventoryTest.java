@@ -19,6 +19,9 @@ import static org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 public class PersistenceInventoryTest {
   private Inventory bookInventory;
 
+  /**
+   * Make sure each time the suite runs we get a fresh start, i.e. empty inventory and command only for testing purpose.
+   */
   @BeforeAll
   static void clearInventoryAndCommands() throws IOException {
     Serializer serializer = Serializer.instance();
@@ -26,6 +29,10 @@ public class PersistenceInventoryTest {
     serializer.write("command.ser", new ArrayList<>());
   }
 
+  /**
+   * Before each test method initialize the bookInventory to a fresh state.
+   * This would simulate the scenario of the program stopping at a point and being successfully restored to its current state from last stored state.
+   */
   @BeforeEach
   public void init() {
     bookInventory = new PersistedInventory(new BookInventory());
