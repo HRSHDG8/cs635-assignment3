@@ -27,19 +27,19 @@ public class Serializer {
     private final static Serializer INSTANCE = new Serializer();
   }
 
-  public void write(String fileName, Object object) throws IOException {
-    Path path = getPath(fileName);
-    try (FileOutputStream file = new FileOutputStream(path.toString());
-         ObjectOutputStream out = new ObjectOutputStream(file)) {
-      out.writeObject(object);
+  public void write(String fileName, Object writable) throws IOException {
+    Path resourcePath = getPath(fileName);
+    try (FileOutputStream outputStream = new FileOutputStream(resourcePath.toString());
+         ObjectOutputStream objectWriter = new ObjectOutputStream(outputStream)) {
+      objectWriter.writeObject(writable);
     }
   }
 
   public Object read(String fileName) throws IOException, ClassNotFoundException {
-    Path path = getPath(fileName);
-    try (FileInputStream file = new FileInputStream(path.toString());
-         ObjectInputStream in = new ObjectInputStream(file)) {
-      return in.readObject();
+    Path resourcePath = getPath(fileName);
+    try (FileInputStream inputStream = new FileInputStream(resourcePath.toString());
+         ObjectInputStream objectReader = new ObjectInputStream(inputStream)) {
+      return objectReader.readObject();
     }
   }
 

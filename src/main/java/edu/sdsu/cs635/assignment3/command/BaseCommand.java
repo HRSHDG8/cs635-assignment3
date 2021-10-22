@@ -7,7 +7,7 @@ import edu.sdsu.cs635.assignment3.inventory.Inventory;
  */
 public abstract class BaseCommand implements Command {
   private static final long serialVersionUID = -3068769635397196299L;
-  Command command;
+  protected Command command;
 
   public BaseCommand(Command command) {
     this.command = command;
