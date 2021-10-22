@@ -8,6 +8,7 @@ import java.util.Objects;
 /**
  * Common place to manage file IO using binary serialization.
  * Handles auto closing of resources using try with resource at a common place.
+ * Due to java classes being final we can't add these methods on the {@link Object} class
  */
 public class Serializer {
   private static Serializer binarySerializer;
