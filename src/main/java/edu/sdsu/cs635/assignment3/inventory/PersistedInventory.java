@@ -23,7 +23,7 @@ public class PersistedInventory extends DecoratedInventory {
   @SuppressWarnings("unchecked")
   public PersistedInventory(Inventory inventory) {
     super(inventory);
-    this.serializer = Serializer.getInstance();
+    this.serializer = Serializer.instance();
     this.invoker = new CommandInvoker(inventory);
     // reload inventory from its last saved state
     // read any pending commands from last saved state and execute it on the inventory

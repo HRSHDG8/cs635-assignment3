@@ -20,7 +20,7 @@ public class Serializer {
     serializerClassLoader = this.getClass().getClassLoader();
   }
 
-  synchronized public static Serializer getInstance() {
+  synchronized public static Serializer instance() {
     if (binarySerializer == null) {
       binarySerializer = new Serializer();
     }

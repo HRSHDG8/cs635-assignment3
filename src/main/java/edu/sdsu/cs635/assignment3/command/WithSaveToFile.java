@@ -17,7 +17,7 @@ public class WithSaveToFile extends BaseCommand {
 
   public WithSaveToFile(Command command) {
     super(command);
-    this.serializer = Serializer.getInstance();
+    this.serializer = Serializer.instance();
   }
 
   @Override

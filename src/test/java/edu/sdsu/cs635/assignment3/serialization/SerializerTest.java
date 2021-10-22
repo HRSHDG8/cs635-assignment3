@@ -24,7 +24,7 @@ class SerializerTest {
 
   @BeforeEach
   void setUp() {
-    serializer = Serializer.getInstance();
+    serializer = Serializer.instance();
   }
 
   @Test

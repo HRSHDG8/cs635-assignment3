@@ -21,7 +21,7 @@ public class PersistenceInventoryTest {
 
   @BeforeAll
   static void clearInventoryAndCommands() throws IOException {
-    Serializer serializer = Serializer.getInstance();
+    Serializer serializer = Serializer.instance();
     serializer.write("inventory.ser", new InventoryState(new BookInventory()));
     serializer.write("command.ser", new ArrayList<>());
   }
