@@ -11,7 +11,6 @@ import java.util.Objects;
  * Due to java classes being final we can't add these methods on the {@link Object} class
  */
 public class Serializer {
-  private static Serializer binarySerializer;
   private final ClassLoader serializerClassLoader;
 
   private Serializer() {
@@ -21,10 +20,11 @@ public class Serializer {
   }
 
   synchronized public static Serializer instance() {
-    if (binarySerializer == null) {
-      binarySerializer = new Serializer();
-    }
-    return binarySerializer;
+    return SingleTonHolder.INSTANCE;
+  }
+
+  private static class SingleTonHolder {
+    private final static Serializer INSTANCE = new Serializer();
   }
 
   public void write(String fileName, Object object) throws IOException {
